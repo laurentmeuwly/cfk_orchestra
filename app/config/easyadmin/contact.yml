@@ -7,7 +7,7 @@ easy_admin:
                 title: 'Liste des contacts'
                 sort: ['lastname', 'ASC']
                 actions:
-                    #- { name: 'show', label: '', icon: 'search' }
+                    - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
                 fields:

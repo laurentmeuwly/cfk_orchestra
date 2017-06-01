@@ -6,3 +6,13 @@ easy_admin:
             list:
                 title: 'Liste des entreprises'
                 sort: ['name', 'ASC']
+                actions:
+                    #- { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - 'id'
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'address', label: 'Rue' }
+                    - { property: 'postalcode', label: 'NPA' }
+                    - { property: 'city', label: 'Ville' }
