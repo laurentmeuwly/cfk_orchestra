@@ -1,0 +1,6 @@
+easy_admin:
+    entities:
+        - AppBundle\Entity\Company
+        - AppBundle\Entity\Contact
+        - AppBundle\Entity\Category
+        - AppBundle\Entity\Source

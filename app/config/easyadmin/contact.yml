@@ -1,0 +1,20 @@
+easy_admin:
+    entities:
+        Contact:
+            class: AppBundle\Entity\Contact
+            label: 'Contacts'
+            list:
+                title: 'Liste des contacts'
+                sort: ['lastname', 'ASC']
+                actions:
+                    #- { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - 'id'
+                    - { property: 'gender', label: 'Civilité' }
+                    - { property: 'lastname', label: 'Nom' }
+                    - { property: 'firstname', label: 'Prénom' }
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'language', label: 'Langue' }
+                    - { property: 'newsletter', label: 'Newsletter' }

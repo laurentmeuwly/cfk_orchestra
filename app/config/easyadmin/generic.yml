@@ -1,0 +1,27 @@
+easy_admin:
+    #site_name: 'Chemins de Fer du Kaeserberg <small>orchestra</small>'
+    site_name: '<img src="http://kaeserberg.ch/Portals/0/Templates/logo-cfk.png" width="180px" height="26px" />'
+    
+    list:
+        max_results: 30
+    show:
+        max_results: 20
+    formats:
+        date:     'd.m.Y'
+        time:     'H:i'
+        datetime: 'd.m.Y H:i:s'
+        number: '%.2f'
+    design:
+        brand_color: '#ffdd00'
+        form_theme:   'vertical'
+        templates:
+            label_null: '::label_null.html.twig'
+        menu:
+            - { label: 'Contacts', entity: 'Contact', icon: 'address-book' }
+            - { label: 'Entreprises', entity: 'Company', icon: 'building' }
+            - { label: 'Configuration' }
+            - { label: 'Catégories', entity: 'Category', icon: 'tags'}
+            - { label: 'Source', entity: 'Source', icon: 'filter'}
+            #- { label: 'menu.about' }
+            #- { label: 'menu.about.docs', url: 'https://github.com/laurentmeuwly/rossier_cbsa/tree/master/docs', icon: 'book', target: '_blank' }
+            #- { label: 'menu.about.impressum', route: 'impressum', icon: 'info' }

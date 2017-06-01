@@ -1,0 +1,8 @@
+easy_admin:
+    entities:
+        Company:
+            class: AppBundle\Entity\Company
+            label: 'Entreprises'
+            list:
+                title: 'Liste des entreprises'
+                sort: ['name', 'ASC']

@@ -1,0 +1,7 @@
+app_category:
+    resource: "@AppBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+app_source:
+    resource: "@AppBundle/Resources/config/routing/source.yml"
+    prefix:   /source
