@@ -83,7 +83,7 @@ class Contact
      *
      * @ORM\Column(name="newsletter", type="boolean", nullable=false)
      */
-    private $newsletter = '0';
+    private $newsletter = false;
     
     /**
      * @var string
@@ -132,10 +132,10 @@ class Contact
      *
      * @ORM\Column(name="is_prospect", type="boolean", nullable=false)
      */
-    private $isProspect;
+    private $isProspect = false;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Company")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="contacts")
      */
     private $company;
     

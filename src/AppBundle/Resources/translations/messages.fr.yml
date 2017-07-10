@@ -1,0 +1,53 @@
+
+Company: entreprise
+Contact: contact
+
+
+app:
+  menu:
+    mailchimp:  MailChimp
+    configuration:  Configuration
+    about: A propos
+    contact:  Contacts
+    company:  Entreprises
+    information:  Informations
+    category: Catégories
+    source: Sources
+    impressum: Impressum
+    
+  warning:
+      admin_only: Réservé pour l'administrateur
+      
+  label_generic:
+      createdat:  Date de création
+      updatedat:  Date de la dernière modification
+      zohoid: Identifiant Zoho CRM
+      
+  label_group:
+      basic:  Informations de base
+      contact:  Contact
+      newsletter: Newsletter
+      description:  Description
+      advanced_settings:  Paramètres avancés
+    
+  company:
+    name: Nom
+    address:  Rue
+    city: Ville
+    postalcode: NPA
+    country:  Pays
+    phone: Téléphone
+    fax:  Fax
+    website: Site Web
+    email:  Email
+    language: Langue
+    newsletter: Newsletter ?
+    categories: Catégories
+    prospect: Prospect ?
+    description: Description
+    contacts: Contacts
+    
+list:
+  title:
+    company:  Listes des entreprises
+    

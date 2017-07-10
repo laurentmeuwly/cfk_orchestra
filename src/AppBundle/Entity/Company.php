@@ -28,6 +28,11 @@ class Company
     private $id;
 
     /**
+     * * @ORM\OneToMany(targetEntity="Contact", mappedBy="company")
+     */
+    private $contacts;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
@@ -75,7 +80,7 @@ class Company
      *
      * @ORM\Column(name="newsletter", type="boolean", nullable=false)
      */
-    private $newsletter = '0';
+    private $newsletter = false;
 
     /**
      * @var string
@@ -147,6 +152,7 @@ class Company
     public function __construct()
     {
     	$this->categories = new ArrayCollection();
+    	$this->contacts = new ArrayCollection();
     }
     
     /**
@@ -496,6 +502,55 @@ class Company
     public function getCategories()
     {
         return $this->categories;
+    }
+    
+    /**
+     * Return all contact associated to the company.
+     *
+     * @return Contact[]
+     */
+    public function getContacts()
+    {
+    	return $this->contacts;
+    }
+    
+    /**
+     * Set all contacts in the company.
+     *
+     * @param Contact[] $contacts
+     */
+    public function setContacts($contacts)
+    {
+    	$this->contacts->clear();
+    	$this->contacts = new ArrayCollection($contacts);
+    }
+    
+    /**
+     * Add a contact in the company.
+     *
+     * @param $contact Contact The contact to associate
+     */
+    public function addContact($contact)
+    {
+    	if ($this->contacts->contains($contact)) {
+    		return;
+    	}
+    
+    	$this->contacts->add($contact);
+    	$contact->setCompany($this);
+    }
+    
+    /**
+     * @param Contact $contact
+     */
+    public function removeContact($contact)
+    {
+    	if (!$this->contacts->contains($contact)) {
+    		return;
+    	}
+    
+    	$this->contacts->removeElement($contact);
+    	$contact->removeCompany($this);
     }
     
     /**
