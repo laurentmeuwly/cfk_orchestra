@@ -27,7 +27,7 @@ easy_admin:
             - { label: 'Configuration' }
             - { label: 'Catégories', entity: 'Category', icon: 'tags'}
             - { label: 'Source', entity: 'Source', icon: 'filter'}
-            - { label: 'Paramètres', entity: 'Configuration', icon: 'gear' }
+            #- { label: 'Paramètres', entity: 'Configuration', icon: 'gear' }
             - { label: 'A propos' }
             - { label: 'Impressum', route: 'impressum', icon: 'info' }
             
