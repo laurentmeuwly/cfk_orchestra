@@ -1,0 +1,11 @@
+welp_mailchimp:
+    api_key: fdf2c4934dd3911339d8387e99beeaa5-us16
+    lists:
+        edadf194f0:
+            # provider used in full synchronization
+            subscriber_provider: 'yourapp.provider1'
+            # webhook secret to secure webhook between MailChimp & your app
+            webhook_secret: 'thisIsASecret'
+            # The webhook url to be registered to the MailChimp list
+            webhook_url: 'https://myapp.com/mailchimp/webhook/endpoint'
+        
