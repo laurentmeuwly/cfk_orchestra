@@ -17,7 +17,7 @@ use AppBundle\Form\ConfigurationType;
  */
 class MailchimpController extends Controller
 {
-	const MAILCHIMP_API_KEY = '038a5e2fd8cdefa49610cfcc6ee6a795-us16';
+	const MAILCHIMP_API_KEY = '*****';
 	const LIST_ID = 'edadf194f0';
 	
 	/**
