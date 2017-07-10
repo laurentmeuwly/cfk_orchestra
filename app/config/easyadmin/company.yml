@@ -16,3 +16,38 @@ easy_admin:
                     - { property: 'address', label: 'Rue' }
                     - { property: 'postalcode', label: 'NPA' }
                     - { property: 'city', label: 'Ville' }
+                    - { property: 'countrycode', label: 'Pays' }
+                    - { property: 'phone', label: 'Téléphone' }
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'getallcategories', label: 'Catégories'}
+                    - { property: 'newsletter', label: 'Newsletter' }
+                    - { property: 'isProspect', label: 'Prospect ?' }
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Basic information', icon: 'address-card-o' }
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'address', label: 'Rue' }
+                    - { property: 'postalcode', label: 'NPA' }
+                    - { property: 'city', label: 'Ville' }
+                    - { property: 'countrycode', label: 'Pays' }
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Contact information', icon: 'phone' }
+                    - { property: 'phone', label: 'Téléphone' }
+                    - { property: 'fax', label: 'Fax' }
+                    - { property: 'website', label: 'Site Web' }
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Newsletter', icon: 'envelope-o' }
+                    #- { property: 'email' }    # the entity does not know this field
+                    #- { property: 'newsletter' }    # the entity does not know this field
+                    #- { property: 'language' }    # the entity does not know this field
+                    - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Category' } }
+                    - { property: 'isProspect', label: 'Prospect ?' }
+                    
+                    
+                    - { type: 'group', css_class: 'new-row' }
+                    
+                    - { type: 'group', css_class: 'col-sm-8', label: 'Description', icon: 'pencil' }
+                    - { property: 'description', label: 'Description' }
+                    
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Advanced Settings', icon: 'warning', help: 'Reserved for administrators use' }
+                    - { property: 'createdAt', type_options: { disabled: 'true', widget: 'single_text' } }
+                    - { property: 'updatedAt', type_options: { disabled: 'true', widget: 'single_text'} }
+                    - { property: 'zohoId', type_options: { disabled: 'true'} }

@@ -18,4 +18,12 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+    
+    /**
+     * @Route("/impressum", name="impressum")
+     */
+    public function impressumAction(Request $request)
+    {
+    	return $this->render('::impressum.html.twig');
+    }
 }

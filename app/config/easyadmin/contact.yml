@@ -17,4 +17,42 @@ easy_admin:
                     - { property: 'firstname', label: 'Prénom' }
                     - { property: 'email', label: 'Email' }
                     - { property: 'language', label: 'Langue' }
+                    - { property: 'company', label: 'Société' }
+                    - { property: 'getallcategories', label: 'Catégories'}
+                    #- { property: 'source', label: 'Source' }
                     - { property: 'newsletter', label: 'Newsletter' }
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Basic information', icon: 'pencil' }
+                    - { property: 'gender', label: 'Civilité' }
+                    - { property: 'lastname', label: 'Nom' }
+                    - { property: 'firstname', label: 'Prénom' }
+                    - { property: 'address', label: 'Rue' }
+                    - { property: 'address2', label: 'Complément' }
+                    - { property: 'postalcode', label: 'NPA' }
+                    - { property: 'city', label: 'Ville' }
+                    - { property: 'countrycode', label: 'Pays' }
+                    
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Contact information', icon: 'phone' }
+                    - { property: 'phone', label: 'Téléphone' }
+                    - { property: 'mobile', label: 'Mobile' }
+                    - { property: 'company', label: 'Société', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Company' } }
+                    - { property: 'source', label: 'Source', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Source' } }
+                    
+                    
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Newsletter', icon: 'envelope-o' }
+                    - { property: 'email', label: 'email' }
+                    - { property: 'newsletter', label: 'Abonné ?' }  
+                    - { property: 'language', label: 'Langue' }    
+                    - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Category' } }
+                    - { property: 'isProspect', label: 'Prospect ?' }
+
+                    - { type: 'group', css_class: 'new-row' }
+                    
+                    - { type: 'group', css_class: 'col-sm-8', label: 'Message', icon: 'pencil' }
+                    - { property: 'message', label: 'Message' }
+                    
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Advanced Settings', icon: 'warning', help: 'Reserved for administrators use' }
+                    - { property: 'createdAt', type_options: { disabled: 'true', widget: 'single_text' } }
+                    - { property: 'updatedAt', type_options: { disabled: 'true', widget: 'single_text'} }
+                    - { property: 'zohoId', type_options: { disabled: 'true'} }

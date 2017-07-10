@@ -7,20 +7,27 @@ easy_admin:
                 title: 'Liste des catégories'
                 sort: ['parent', 'ASC']
                 actions:
-                    #- { name: 'show', label: '', icon: 'search' }
+                    - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
                 fields:
                     - 'id'
-                    - { property: 'name', label: 'Label' }
-                    - { property: 'parent', label: 'Parent category' }
+                    - { property: 'name', label: 'Catégorie' }
+                    - { property: 'parent', label: 'Catégorie parente' }
+                    - contacts
+                    - companies
             show:
                 fields:
                     - 'id'
-                    - { property: 'name', label: 'Label', css_class: 'large' }
-                    - { property: 'parent', label: 'Parent category' }
+                    - { property: 'name', label: 'Catégorie', css_class: 'large' }
+                    - { property: 'parent', label: 'Catégorie parente' }
+                    - contacts
             form:
                 fields:
                     - { type: 'group', css_class: 'col-sm-4', label: 'Caractéristiques', icon: 'pencil' }
-                    - { property: 'name', label: 'Label', css_class: 'large' }
-                    - { property: 'parent', label: 'Parent category' }
+                    - { property: 'name', label: 'Catégorie', css_class: 'large' }
+                    - { property: 'parent', label: 'Catégorie parente' }
+                    
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Advanced Settings', icon: 'warning', help: 'Reserved for administrators use' }
+                    - { property: 'createdAt', type_options: { disabled: 'true', widget: 'single_text' } }
+                    - { property: 'updatedAt', type_options: { disabled: 'true', widget: 'single_text'} }

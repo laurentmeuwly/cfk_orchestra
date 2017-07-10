@@ -1,0 +1,19 @@
+easy_admin:
+    entities:
+        Configuration:
+            class: AppBundle\Entity\Configuration
+            label: 'Configuration générale'
+            list:
+                title: 'Liste des paramètres'
+                actions:
+                    - '-delete'
+                    #- { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                fields:
+                    - 'id'
+                    - { property: 'param', label: 'Paramètre' }
+                    - { property: 'value', label: 'Valeur' }
+            form:
+                fields:
+                    - { property: 'param', label: 'Paramètre', type_options: { disabled: true } }
+                    - { property: 'value', label: 'Valeur' }

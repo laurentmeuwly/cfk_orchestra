@@ -30,6 +30,16 @@ class Source
 
 
     /**
+     * Get the name of the source.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+    	return $this->getName();
+    }
+    
+    /**
      * Get id
      *
      * @return int

@@ -6,3 +6,21 @@ easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
     prefix:   /
+    
+mailchimp_config:
+    resource: "@AppBundle/Controller/MailchimpController.php"
+    type:     annotation
+    prefix:   /mailchimp
+    
+impressum:
+    resource: "@AppBundle/Controller/DefaultController.php"
+    type:     annotation
+    prefix:   /impressum
+
+cfk_contact:
+    path:     /contact
+    defaults: { _controller: AppBundle:Cfk:contact }
+    
+thanks:
+    path:     /thanks
+    defaults: { _controller: AppBundle:Cfk:thanks }

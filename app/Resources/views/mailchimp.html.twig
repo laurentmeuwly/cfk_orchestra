@@ -1,0 +1,37 @@
+{% extends 'EasyAdminBundle:default:layout.html.twig' %} 
+
+
+
+{% block content_title %}
+{% spaceless %}
+   Informations Mailchimp
+{% endspaceless %}
+{% endblock %}
+
+{% block main %}
+
+Votre compte Mailchimp: {{ mailchimp_api_key }}
+{# début de la table #}
+<table width="850px">
+<thead>
+<tr>
+	<th style="text-align: left;" width="200px">Id</th>
+	<th style="text-align: left;" width="300px">Nom</th>
+	<th style="text-align: left;" width="350px">Nb inscrits</th>
+</tr>
+</thead>
+
+<tbody>
+{% for list in lists %}
+<tr>
+	<td>{{ list.id}}</td>
+	<td>{{ list.name }}</td>
+	<td>{{ addInfos[list.id].nb_members }}</td>
+</tr>
+{%  endfor %}
+</tbody>
+
+</table>
+{# fin de la table #}
+
+{% endblock %}

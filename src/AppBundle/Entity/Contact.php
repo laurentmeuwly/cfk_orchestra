@@ -2,8 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Contact
@@ -11,6 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="contact")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ContactRepository")
  * @UniqueEntity("email", ignoreNull=true)
+ * @UniqueEntity("zohoId", ignoreNull=true)
  */
 class Contact
 {
@@ -40,7 +44,7 @@ class Contact
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @ORM\Column(name="email", type="string", length=255, unique=true, nullable=true)
      */
     private $email;
     
@@ -50,6 +54,14 @@ class Contact
      * @ORM\Column(name="phone", type="string", length=20, nullable=true)
      */
     private $phone;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mobile", type="string", length=20, nullable=true)
+     */
+    private $mobile;
+    
 
     /**
      * @var string
@@ -107,8 +119,70 @@ class Contact
      * @ORM\Column(name="countrycode", type="string", length=2, nullable=true)
      */
     private $countrycode;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", length=65535, nullable=true)
+     */
+    private $message;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_prospect", type="boolean", nullable=false)
+     */
+    private $isProspect;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Company")
+     */
+    private $company;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="contacts", cascade={"persist"})
+     */
+    private $categories;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Source")
+     */
+    private $source;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="zoho_id", type="string", length=50, nullable=true, unique=true)
+     */
+    private $zohoId;
+    
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+    
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
 
 
+    public function __construct()
+    {
+    	$this->categories = new ArrayCollection();
+    }
+    
+    public function __toString()
+    {
+    	$string = $this->getFirstname() . ' ' . $this->getLastname();
+    	if($this->getEmail() != '') {
+    		$string .= '( ' . $this->getEmail() . ')';
+    	}
+    	return $string;
+    }
+    
     /**
      * Get id
      *
@@ -213,6 +287,30 @@ class Contact
     public function getPhone()
     {
     	return $this->phone;
+    }
+    
+    /**
+     * Set mobile
+     *
+     * @param string $mobile
+     *
+     * @return Contact
+     */
+    public function setMobile($mobile)
+    {
+    	$this->mobile = $mobile;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get mobile
+     *
+     * @return string
+     */
+    public function getMobile()
+    {
+    	return $this->mobile;
     }
 
     /**
@@ -405,6 +503,176 @@ class Contact
     public function getCountrycode()
     {
     	return $this->countrycode;
+    }
+    
+    /**
+     * Set description
+     *
+     * @param string $message
+     *
+     * @return Contact
+     */
+    public function setMessage($message)
+    {
+    	$this->message = $message;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+    	return $this->message;
+    }
+    
+    /**
+     * Set isProspect
+     *
+     * @param boolean $isProspect
+     *
+     * @return Contact
+     */
+    public function setIsProspect($isProspect)
+    {
+    	$this->isProspect = $isProspect;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get isProspect
+     *
+     * @return boolean
+     */
+    public function getIsProspect()
+    {
+    	return $this->isProspect;
+    }
+    
+    /**
+     * 
+     * @param Company $company
+     * @return Contact
+     */
+    public function setCompany($company)
+    {
+    	$this->company = $company;
+    	
+    	return $this;
+    }
+    
+    /**
+     * 
+     * @return Company
+     */
+    public function getCompany()
+    {
+    	return $this->company;
+    }
+    
+    /**
+     *
+     * @param Source $source
+     * @return Contact
+     */
+    public function setSource($source)
+    {
+    	$this->source = $source;
+    	 
+    	return $this;
+    }
+    
+    /**
+     *
+     * @return Source
+     */
+    public function getSource()
+    {
+    	return $this->source;
+    }
+    
+    
+    public function addCategory(Category $category)
+    {
+    	$this->categories[] = $category;
+    	return $this;
+    }
+    
+    public function removeCategory(Category $category)
+    {
+    	$this->categories->removeElement($category);
+    }
+    
+    public function getCategories()
+    {
+    	return $this->categories;
+    }
+    
+    /**
+     * Set zohoId
+     *
+     * @param string $zohoId
+     *
+     * @return Contact
+     */
+    public function setZohoId($zohoId)
+    {
+    	$this->zohoId = $zohoId;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get zohoId
+     *
+     * @return string
+     */
+    public function getZohoId()
+    {
+    	return $this->zohoId;
+    }
+    
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+    	return $this->createdAt;
+    }
+    
+    public function setCreatedAt($createdat)
+    {
+    	$this->createdAt = $createdat;
+    }
+    
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+    	return $this->updatedAt;
+    }
+    
+    public function setUpdatedAt($updatedat)
+    {
+    	$this->updatedAt = $updatedat;
+    }
+    
+    public function getAllCategories()
+    {
+    	$str = '';
+    	$i=0;
+    	foreach($this->getCategories() as $category)
+    	{
+    		if($i>0) $str .= '; ';
+    		$str .= $category->getName();
+    		$i++;
+    	}
+    	return $str;
     }
 }
 

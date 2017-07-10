@@ -12,16 +12,22 @@ easy_admin:
         datetime: 'd.m.Y H:i:s'
         number: '%.2f'
     design:
-        brand_color: '#ffdd00'
+        brand_color: '#eebb00'
         form_theme:   'vertical'
         templates:
             label_null: '::label_null.html.twig'
         menu:
             - { label: 'Contacts', entity: 'Contact', icon: 'address-book' }
             - { label: 'Entreprises', entity: 'Company', icon: 'building' }
-            - { label: 'Configuration' }
-            - { label: 'Catégories', entity: 'Category', icon: 'tags'}
-            - { label: 'Source', entity: 'Source', icon: 'filter'}
             #- { label: 'menu.about' }
             #- { label: 'menu.about.docs', url: 'https://github.com/laurentmeuwly/rossier_cbsa/tree/master/docs', icon: 'book', target: '_blank' }
             #- { label: 'menu.about.impressum', route: 'impressum', icon: 'info' }
+            - { label: 'MailChimp' }
+            - { label: 'Informations', route: 'mailchimp', icon: 'info-circle' }
+            - { label: 'Configuration' }
+            - { label: 'Catégories', entity: 'Category', icon: 'tags'}
+            - { label: 'Source', entity: 'Source', icon: 'filter'}
+            - { label: 'Paramètres', entity: 'Configuration', icon: 'gear' }
+            - { label: 'A propos' }
+            - { label: 'Impressum', route: 'impressum', icon: 'info' }
+            

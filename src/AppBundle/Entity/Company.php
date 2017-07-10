@@ -4,12 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Company
  *
  * @ORM\Table(name="company")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CompanyRepository")
+ * @UniqueEntity("email", ignoreNull=true)
+ * @UniqueEntity("zohoId", ignoreNull=true)
+ * @UniqueEntity("name")
  */
 class Company
 {
@@ -35,6 +40,20 @@ class Company
      * @ORM\Column(name="phone", type="string", length=20, nullable=true)
      */
     private $phone;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fax", type="string", length=20, nullable=true)
+     */
+    private $fax;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, unique=true, nullable=true)
+     */
+    private $email;
 
     /**
      * @var string
@@ -42,6 +61,21 @@ class Company
      * @ORM\Column(name="website", type="string", length=50, nullable=true)
      */
     private $website;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="language", type="string", length=2, nullable=true)
+     */
+    private $language;
+    
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="newsletter", type="boolean", nullable=false)
+     */
+    private $newsletter = '0';
 
     /**
      * @var string
@@ -74,20 +108,55 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
      */
     private $description;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_prospect", type="boolean", nullable=false)
+     */
+    private $isProspect;
     
     /**
      * @ORM\ManyToMany(targetEntity="Category", cascade={"persist"})
      */
     private $categories;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="zoho_id", type="string", length=50, nullable=true, unique=true)
+     */
+    private $zohoId;
+    
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+    
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+    
     
     public function __construct()
     {
     	$this->categories = new ArrayCollection();
+    }
+    
+    /**
+     * Get the name of the company.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+    	return $this->getName();
     }
 
     /**
@@ -147,6 +216,54 @@ class Company
     {
         return $this->phone;
     }
+    
+    /**
+     * Set fax
+     *
+     * @param string $fax
+     *
+     * @return Company
+     */
+    public function setFax($fax)
+    {
+    	$this->fax = $fax;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get fax
+     *
+     * @return string
+     */
+    public function getFax()
+    {
+    	return $this->fax;
+    }
+    
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Company
+     */
+    public function setEmail($email)
+    {
+    	$this->email = $email;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+    	return $this->email;
+    }
 
     /**
      * Set website
@@ -172,6 +289,54 @@ class Company
         return $this->website;
     }
 
+    /**
+     * Set language
+     *
+     * @param string $language
+     *
+     * @return Contact
+     */
+    public function setLanguage($language)
+    {
+    	$this->language = $language;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get language
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+    	return $this->language;
+    }
+    
+    /**
+     * Set newsletter
+     *
+     * @param boolean $newsletter
+     *
+     * @return Company
+     */
+    public function setNewsletter($newsletter)
+    {
+    	$this->newsletter = $newsletter;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get newsletter
+     *
+     * @return boolean
+     */
+    public function getNewsletter()
+    {
+    	return $this->newsletter;
+    }
+    
     /**
      * Set address
      *
@@ -291,6 +456,30 @@ class Company
     {
         return $this->description;
     }
+    
+    /**
+     * Set isProspect
+     *
+     * @param boolean $isProspect
+     *
+     * @return Company
+     */
+    public function setIsProspect($isProspect)
+    {
+    	$this->isProspect = $isProspect;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get isProspect
+     *
+     * @return boolean
+     */
+    public function getIsProspect()
+    {
+    	return $this->isProspect;
+    }
 
 
     public function addCategory(Category $category)
@@ -307,6 +496,69 @@ class Company
     public function getCategories()
     {
         return $this->categories;
+    }
+    
+    /**
+     * Set zohoId
+     *
+     * @param string $zohoId
+     *
+     * @return Company
+     */
+    public function setZohoId($zohoId)
+    {
+    	$this->zohoId = $zohoId;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get zohoId
+     *
+     * @return string
+     */
+    public function getZohoId()
+    {
+    	return $this->zohoId;
+    }
+    
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+    	return $this->createdAt;
+    }
+    
+    public function setCreatedAt($createdat)
+    {
+    	$this->createdAt = $createdat;
+    }
+    
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+    	return $this->updatedAt;
+    }
+    
+    public function setUpdatedAt($updatedat)
+    {
+    	$this->updatedAt = $updatedat;
+    }
+    
+    public function getAllCategories()
+    {
+    	$str = '';
+    	$i=0;
+    	foreach($this->getCategories() as $category)
+    	{
+    		if($i>0) $str .= '; ';
+    		$str .= $category->getName();
+    		$i++;
+    	}
+    	return $str;
     }
 }
 
