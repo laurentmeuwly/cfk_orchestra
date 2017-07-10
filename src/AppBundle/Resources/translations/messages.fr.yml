@@ -30,6 +30,12 @@ app:
       description:  Description
       advanced_settings:  Paramètres avancés
     
+  list:
+    company:  Liste des entreprises
+    contact:  Liste des contacts
+    category: Liste des catégories
+    source:   Liste des sources de données
+    
   company:
     name: Nom
     address:  Rue
@@ -47,7 +53,25 @@ app:
     description: Description
     contacts: Contacts
     
-list:
-  title:
-    company:  Listes des entreprises
+  contact:
+    gender: Civilité
+    lastname: Nom
+    firstname: Prénom
+    address:  Rue
+    address2:  Complément
+    city: Ville
+    postalcode: NPA
+    country:  Pays
+    phone: Téléphone
+    mobile:  Mobile
+    source: Source des données
+    email:  Email
+    language: Langue
+    newsletter: Newsletter ?
+    categories: Catégories
+    prospect: Prospect ?
+    message: Message
+    company: Entreprise
+    
+  
     

@@ -4,74 +4,90 @@ easy_admin:
             class: AppBundle\Entity\Company
             label: app.menu.company
             list:
-                title: 'list.title.company'
+                title: app.list.company
                 sort: ['name', 'ASC']
                 actions:
-                    - { name: 'show', label: '', icon: 'search' }
-                    - { name: 'edit', label: '', icon: 'edit' }
-                    - { name: 'delete', label: '', icon: 'trash' }
+                    - { name: 'show',             label: '', icon: 'search' }
+                    - { name: 'edit',             label: '', icon: 'edit' }
+                    - { name: 'delete',           label: '', icon: 'trash' }
                 fields:
-                    - { property: 'name', label: app.company.name }
-                    - { property: 'address', label: app.company.address }
-                    - { property: 'postalcode', label: app.company.postalcode }
-                    - { property: 'city', label: app.company.city }
-                    - { property: 'countrycode', label: app.company.country }
-                    - { property: 'language', label: app.company.language }
-                    - { property: 'description', label: app.company.description }
-                    - { property: 'email', label: app.company.email }
-                    - { property: 'contacts', label: app.company.contacts }
+                    - { property: 'name',         label: app.company.name }
+                    - { property: 'address',      label: app.company.address }
+                    - { property: 'postalcode',   label: app.company.postalcode }
+                    - { property: 'city',         label: app.company.city }
+                    - { property: 'countrycode',  label: app.company.country }
+                    - { property: 'language',     label: app.company.language }
+                    - { property: 'description',  label: app.company.description }
+                    - { property: 'email',        label: app.company.email }
+                    - { property: 'contacts',     label: app.company.contacts }
                     - { property: 'getallcategories', label: app.company.categories}
-                    - { property: 'newsletter', label: app.company.newsletter }
-                    - { property: 'isProspect', label: app.company.prospect }
+                    - { property: 'newsletter',   label: app.company.newsletter }
+                    - { property: 'isProspect',   label: app.company.prospect }
             form:
                 fields:
-                    - { type: 'group', css_class: 'col-sm-4', label: app.label_group.basic, icon: 'address-card-o' }
-                    - { property: 'name', label: app.company.name }
-                    - { property: 'address', label: app.company.address }
-                    - { property: 'postalcode', label: app.company.postalcode }
-                    - { property: 'city', label: app.company.city }
-                    - { property: 'countrycode', label: app.company.country }
-                    - { type: 'group', css_class: 'col-sm-4', label: app.label_group.contact, icon: 'phone' }
-                    - { property: 'phone', label: app.company.phone }
-                    - { property: 'fax', label: app.company.fax }
-                    - { property: 'website', label: app.company.website }
-                    - { type: 'group', css_class: 'col-sm-4', label: app.label_group.newsletter, icon: 'envelope-o' }
-                    - { property: 'email', label: app.company.email }
-                    - { property: 'newsletter', label: app.company.newsletter }
-                    - { property: 'language', label: app.company.language } 
-                    - { property: 'categories', label: app.company.categories, type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Category' } }
-                    - { property: 'isProspect', label: app.company.prospect }
+                    - { type: 'group',            label: app.label_group.basic,
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'address-card-o' }
+                    - { property: 'name',         label: app.company.name }
+                    - { property: 'address',      label: app.company.address }
+                    - { property: 'postalcode',   label: app.company.postalcode }
+                    - { property: 'city',         label: app.company.city }
+                    - { property: 'countrycode',  label: app.company.country }
+                    - { type: 'group',            label: app.label_group.contact,
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'phone' }
+                    - { property: 'phone',        label: app.company.phone }
+                    - { property: 'fax',          label: app.company.fax }
+                    - { property: 'website',      label: app.company.website }
+                    - { type: 'group',            label: app.label_group.newsletter,
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'envelope-o' }
+                    - { property: 'email',        label: app.company.email }
+                    - { property: 'newsletter',   label: app.company.newsletter }
+                    - { property: 'language',     label: app.company.language } 
+                    - { property: 'categories',   label: app.company.categories,
+                                                  type: 'easyadmin_autocomplete',
+                                                  type_options: { class: 'AppBundle\Entity\Category' } }
+                    - { property: 'isProspect',   label: app.company.prospect }
                     
                     
                     - { type: 'group', css_class: 'new-row' }
                     
-                    - { type: 'group', css_class: 'col-sm-8', label: app.label_group.description, icon: 'pencil' }
-                    - { property: 'description', label: app.company.description }
+                    - { type: 'group',            label: app.label_group.description, 
+                                                  css_class: 'col-sm-8', 
+                                                  icon: 'pencil' }
+                    - { property: 'description',  label: app.company.description }
                     
-                    - { type: 'group', css_class: 'col-sm-4', label: app.label_group.advanced_settings, icon: 'warning', help: app.warning.admin_only }
-                    - { property: 'createdAt', label: app.label_generic.createdat, type_options: { disabled: 'true', widget: 'single_text' } }
-                    - { property: 'updatedAt', label: app.label_generic.updatedat, type_options: { disabled: 'true', widget: 'single_text'} }
-                    - { property: 'zohoId', label: app.label_generic.zohoid, type_options: { disabled: 'true'} }
+                    - { type: 'group',            label: app.label_group.advanced_settings, 
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'warning',
+                                                  help: app.warning.admin_only }
+                    - { property: 'createdAt',    label: app.label_generic.createdat, 
+                                                  type_options: { disabled: 'true', widget: 'single_text' } }
+                    - { property: 'updatedAt',    label: app.label_generic.updatedat, 
+                                                  type_options: { disabled: 'true', widget: 'single_text'} }
+                    - { property: 'zohoId',       label: app.label_generic.zohoid, 
+                                                  type_options: { disabled: 'true'} }
             show:
                 fields:
                     - id
-                    - { property: 'name', label: app.company.name, css_class: 'large' }
-                    - { property: 'address', label: app.company.address }
-                    - { property: 'postalcode', label: app.company.postalcode }
-                    - { property: 'city', label: app.company.city }
-                    - { property: 'countrycode', label: app.company.country }
-                    - { property: 'phone', label: app.company.phone }
-                    - { property: 'fax', label: app.company.fax }
-                    - { property: 'website', label: app.company.website }
-                    - { property: 'email', label: app.company.email }
-                    - { property: 'newsletter', label: app.company.newsletter }
-                    - { property: 'language', label: app.company.language } 
-                    - { property: 'categories', label: app.company.categories }
-                    - { property: 'isProspect', label: app.company.prospect }
-                    - { property: 'description', label: app.company.description }
-                    - { property: 'contacts', label: app.company.contacts }
-                    - { property: 'createdAt', label: app.label_generic.createdat, type_options: { disabled: 'true', widget: 'single_text' } }
-                    - { property: 'updatedAt', label: app.label_generic.updatedat, type_options: { disabled: 'true', widget: 'single_text'} }
-                    - { property: 'zohoId', label: app.label_generic.zohoid, type_options: { disabled: 'true'} }
+                    - { property: 'name',         label: app.company.name }
+                    - { property: 'address',      label: app.company.address }
+                    - { property: 'postalcode',   label: app.company.postalcode }
+                    - { property: 'city',         label: app.company.city }
+                    - { property: 'countrycode',  label: app.company.country }
+                    - { property: 'phone',        label: app.company.phone }
+                    - { property: 'fax',          label: app.company.fax }
+                    - { property: 'website',      label: app.company.website }
+                    - { property: 'email',        label: app.company.email }
+                    - { property: 'newsletter',   label: app.company.newsletter }
+                    - { property: 'language',     label: app.company.language } 
+                    - { property: 'categories',   label: app.company.categories }
+                    - { property: 'isProspect',   label: app.company.prospect }
+                    - { property: 'description',  label: app.company.description }
+                    - { property: 'contacts',     label: app.company.contacts }
+                    - { property: 'createdAt',    label: app.label_generic.createdat }
+                    - { property: 'updatedAt',    label: app.label_generic.updatedat }
+                    - { property: 'zohoId',       label: app.label_generic.zohoid }
 
                     

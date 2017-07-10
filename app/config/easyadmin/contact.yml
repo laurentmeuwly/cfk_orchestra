@@ -2,57 +2,99 @@ easy_admin:
     entities:
         Contact:
             class: AppBundle\Entity\Contact
-            label: 'Contacts'
+            label: app.menu.contact
+            
+            #search:
+                #fields: [firstname, lastname, email, company]
+                
             list:
-                title: 'Liste des contacts'
+                title: app.list.contact
                 sort: ['lastname', 'ASC']
                 actions:
-                    - { name: 'show', label: '', icon: 'search' }
-                    - { name: 'edit', label: '', icon: 'edit' }
-                    - { name: 'delete', label: '', icon: 'trash' }
+                    - { name: 'show',             label: '', icon: 'search' }
+                    - { name: 'edit',             label: '', icon: 'edit' }
+                    - { name: 'delete',           label: '', icon: 'trash' }
                 fields:
-                    - 'id'
-                    - { property: 'gender', label: 'Civilité' }
-                    - { property: 'lastname', label: 'Nom' }
-                    - { property: 'firstname', label: 'Prénom' }
-                    - { property: 'email', label: 'Email' }
-                    - { property: 'language', label: 'Langue' }
-                    - { property: 'company', label: 'Société' }
-                    - { property: 'getallcategories', label: 'Catégories'}
-                    #- { property: 'source', label: 'Source' }
-                    - { property: 'newsletter', label: 'Newsletter' }
+                    - { property: 'gender',       label: app.contact.gender }
+                    - { property: 'lastname',     label: app.contact.lastname }
+                    - { property: 'firstname',    label: app.contact.firstname }
+                    - { property: 'email',        label: app.contact.email }
+                    - { property: 'language',     label: app.contact.language }
+                    - { property: 'company',      label: app.contact.company }
+                    - { property: 'getallcategories', label: app.contact.categories }
+                    - { property: 'newsletter',   label: app.contact.newsletter }
+            
             form:
+                title: app.contact.form
                 fields:
-                    - { type: 'group', css_class: 'col-sm-4', label: 'Basic information', icon: 'pencil' }
-                    - { property: 'gender', label: 'Civilité' }
-                    - { property: 'lastname', label: 'Nom' }
-                    - { property: 'firstname', label: 'Prénom' }
-                    - { property: 'address', label: 'Rue' }
-                    - { property: 'address2', label: 'Complément' }
-                    - { property: 'postalcode', label: 'NPA' }
-                    - { property: 'city', label: 'Ville' }
-                    - { property: 'countrycode', label: 'Pays' }
+                    - { type: 'group',            label: app.label_group.basic,
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'pencil' }
+                    - { property: 'gender',       label: app.contact.gender }
+                    - { property: 'lastname',     label: app.contact.lastname }
+                    - { property: 'firstname',    label: app.contact.firstname }
+                    - { property: 'address',      label: app.contact.address }
+                    - { property: 'address2',     label: app.contact.address2 }
+                    - { property: 'postalcode',   label: app.contact.postalcode }
+                    - { property: 'city',         label: app.contact.city }
+                    - { property: 'countrycode',  label: app.contact.country }
                     
-                    - { type: 'group', css_class: 'col-sm-4', label: 'Contact information', icon: 'phone' }
-                    - { property: 'phone', label: 'Téléphone' }
-                    - { property: 'mobile', label: 'Mobile' }
-                    - { property: 'company', label: 'Société', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Company' } }
-                    - { property: 'source', label: 'Source', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Source' } }
+                    - { type: 'group',            label: app.label_group.contact,
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'phone' }
+                    - { property: 'phone',        label: app.contact.phone }
+                    - { property: 'mobile',       label: app.contact.mobile }
+                    - { property: 'company',      label: app.contact.company, 
+                                                  type: 'easyadmin_autocomplete',
+                                                  type_options: { class: 'AppBundle\Entity\Company' } }
+                    - { property: 'source',       label: app.contact.source,
+                                                  type: 'easyadmin_autocomplete',
+                                                  type_options: { class: 'AppBundle\Entity\Source' } }
                     
-                    
-                    - { type: 'group', css_class: 'col-sm-4', label: 'Newsletter', icon: 'envelope-o' }
-                    - { property: 'email', label: 'email' }
-                    - { property: 'newsletter', label: 'Abonné ?' }  
-                    - { property: 'language', label: 'Langue' }    
-                    - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Category' } }
-                    - { property: 'isProspect', label: 'Prospect ?' }
+                    - { type: 'group',            label: app.label_group.newsletter,
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'envelope-o' }
+                    - { property: 'email',        label: app.contact.email }
+                    - { property: 'newsletter',   label: app.contact.newsletter }  
+                    - { property: 'language',     label: app.contact.language }    
+                    - { property: 'categories',   label: app.contact.categories, type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Category' } }
+                    - { property: 'isProspect',   label: app.contact.prospect }
 
                     - { type: 'group', css_class: 'new-row' }
                     
-                    - { type: 'group', css_class: 'col-sm-8', label: 'Message', icon: 'pencil' }
-                    - { property: 'message', label: 'Message' }
+                    - { type: 'group',            label: app.label_group.description,
+                                                  css_class: 'col-sm-8', 
+                                                  icon: 'pencil' }
+                    - { property: 'message',      label: app.contact.message }
                     
-                    - { type: 'group', css_class: 'col-sm-4', label: 'Advanced Settings', icon: 'warning', help: 'Reserved for administrators use' }
-                    - { property: 'createdAt', type_options: { disabled: 'true', widget: 'single_text' } }
-                    - { property: 'updatedAt', type_options: { disabled: 'true', widget: 'single_text'} }
-                    - { property: 'zohoId', type_options: { disabled: 'true'} }
+                    - { type: 'group',            label: app.label_group.advanced_settings,
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'warning', help: app.warning.admin_only }
+                    - { property: 'createdAt',    label: app.label_generic.createdat, type_options: { disabled: 'true', widget: 'single_text' } }
+                    - { property: 'updatedAt',    label: app.label_generic.updatedat, type_options: { disabled: 'true', widget: 'single_text'} }
+                    - { property: 'zohoId',       label: app.label_generic.zohoid, type_options: { disabled: 'true'} }
+                    
+            show:
+                fields:
+                    - id
+                    - { property: 'gender',       label: app.contact.gender }
+                    - { property: 'lastname',     label: app.contact.lastname }
+                    - { property: 'firstname',    label: app.contact.firstname }
+                    - { property: 'address',      label: app.contact.address }
+                    - { property: 'address2',     label: app.contact.address2 }
+                    - { property: 'postalcode',   label: app.contact.postalcode }
+                    - { property: 'city',         label: app.contact.city }
+                    - { property: 'countrycode',  label: app.contact.country }
+                    - { property: 'phone',        label: app.contact.phone }
+                    - { property: 'mobile',       label: app.contact.mobile }
+                    - { property: 'email',        label: app.contact.email }
+                    - { property: 'newsletter',   label: app.contact.newsletter }
+                    - { property: 'language',     label: app.contact.language } 
+                    - { property: 'categories',   label: app.contact.categories }
+                    - { property: 'isProspect',   label: app.contact.prospect }
+                    - { property: 'message',      label: app.contact.message }
+                    - { property: 'source',       label: app.contact.source }
+                    - { property: 'createdAt',    label: app.label_generic.createdat }
+                    - { property: 'updatedAt',    label: app.label_generic.updatedat }
+                    - { property: 'zohoId',       label: app.label_generic.zohoid }
+                    
