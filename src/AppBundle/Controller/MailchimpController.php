@@ -17,7 +17,7 @@ use AppBundle\Form\ConfigurationType;
  */
 class MailchimpController extends Controller
 {
-	const MAILCHIMP_API_KEY = 'fdf2c4934dd3911339d8387e99beeaa5-us16';
+	const MAILCHIMP_API_KEY = '038a5e2fd8cdefa49610cfcc6ee6a795-us16';
 	const LIST_ID = 'edadf194f0';
 	
 	/**
@@ -37,6 +37,6 @@ class MailchimpController extends Controller
 		}		
 		
 		$form = $this->createForm(ConfigurationType::class);
-		return $this->render('::mailchimp.html.twig', array('mailchimp_api_key' => self::MAILCHIMP_API_KEY, 'lists' => $lists, 'addInfos' => $addInfos));
+		return $this->render('::mailchimp.html.twig', array('lists' => $lists, 'addInfos' => $addInfos));
 	}
 }

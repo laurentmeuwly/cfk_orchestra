@@ -1,5 +1,5 @@
 welp_mailchimp:
-    api_key: fdf2c4934dd3911339d8387e99beeaa5-us16
+    api_key: to_complete
     lists:
         edadf194f0:
             # provider used in full synchronization
