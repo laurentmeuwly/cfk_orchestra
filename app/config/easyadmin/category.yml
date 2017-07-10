@@ -2,32 +2,43 @@ easy_admin:
     entities:
         Category:
             class: AppBundle\Entity\Category
-            label: 'Catégories'
+            label: app.menu.category
             list:
-                title: 'Liste des catégories'
+                title: app.list.category
                 sort: ['parent', 'ASC']
                 actions:
-                    - { name: 'show', label: '', icon: 'search' }
-                    - { name: 'edit', label: '', icon: 'edit' }
-                    - { name: 'delete', label: '', icon: 'trash' }
+                    - { name: 'show',             label: '', icon: 'search' }
+                    - { name: 'edit',             label: '', icon: 'edit' }
+                    - { name: 'delete',           label: '', icon: 'trash' }
                 fields:
                     - 'id'
-                    - { property: 'name', label: 'Catégorie' }
-                    - { property: 'parent', label: 'Catégorie parente' }
-                    - contacts
-                    - companies
+                    - { property: 'name',         label: app.category.name }
+                    - { property: 'parent',       label: app.category.parent }
+                    - { property: 'contacts',     label: app.category.contacts }
+                    - { property: 'companies',    label: app.category.companies }
             show:
                 fields:
                     - 'id'
-                    - { property: 'name', label: 'Catégorie', css_class: 'large' }
-                    - { property: 'parent', label: 'Catégorie parente' }
-                    - contacts
+                    - { property: 'name',         label: app.category.name }
+                    - { property: 'parent',       label: app.category.parent }
+                    - { property: 'contacts',     label: app.category.contacts }
+                    - { property: 'companies',    label: app.category.companies }
+                    - { property: 'createdAt',    label: app.label_generic.createdat }
+                    - { property: 'updatedAt',    label: app.label_generic.updatedat }
             form:
                 fields:
-                    - { type: 'group', css_class: 'col-sm-4', label: 'Caractéristiques', icon: 'pencil' }
-                    - { property: 'name', label: 'Catégorie', css_class: 'large' }
-                    - { property: 'parent', label: 'Catégorie parente' }
+                    - { type: 'group',            label: app.label_group.basic,
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'pencil' }
+                    - { property: 'name',         label: app.category.name }
+                    - { property: 'parent',       label: app.category.parent }
                     
-                    - { type: 'group', css_class: 'col-sm-4', label: 'Advanced Settings', icon: 'warning', help: 'Reserved for administrators use' }
-                    - { property: 'createdAt', type_options: { disabled: 'true', widget: 'single_text' } }
-                    - { property: 'updatedAt', type_options: { disabled: 'true', widget: 'single_text'} }
+                    - { type: 'group',            label: app.label_group.advanced_settings, 
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'warning',
+                                                  help: app.warning.admin_only }
+                    - { property: 'createdAt',    label: app.label_generic.createdat, 
+                                                  type_options: { disabled: 'true', widget: 'single_text' } }
+                    - { property: 'updatedAt',    label: app.label_generic.updatedat, 
+                                                  type_options: { disabled: 'true', widget: 'single_text'} }
+                    

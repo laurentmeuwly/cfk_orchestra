@@ -2,11 +2,20 @@ easy_admin:
     entities:
         Source:
             class: AppBundle\Entity\Source
-            label: 'Sources'
+            label: app.menu.source
             list:
-                title: 'Sources des données'
+                title: app.list.source
                 sort: ['id', 'ASC']
                 actions:
-                    #- { name: 'show', label: '', icon: 'search' }
-                    - { name: 'edit', label: '', icon: 'edit' }
-                    - { name: 'delete', label: '', icon: 'trash' }
+                    - { name: 'edit',             label: '', icon: 'edit' }
+                    - { name: 'delete',           label: '', icon: 'trash' }
+                fields:
+                    - { property: 'name',         label: app.source.name }
+                    
+            form:
+                title: app.source.form
+                fields:
+                    - { type: 'group',            label: app.label_group.basic,
+                                                  css_class: 'col-sm-4', 
+                                                  icon: 'pencil' }
+                    - { property: 'name',         label: app.source.name }

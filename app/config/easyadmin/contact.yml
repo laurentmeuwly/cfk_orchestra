@@ -25,7 +25,6 @@ easy_admin:
                     - { property: 'newsletter',   label: app.contact.newsletter }
             
             form:
-                title: app.contact.form
                 fields:
                     - { type: 'group',            label: app.label_group.basic,
                                                   css_class: 'col-sm-4', 

@@ -1,6 +1,8 @@
 
 Company: entreprise
 Contact: contact
+Category: catégorie
+Source: source
 
 
 app:
@@ -72,6 +74,15 @@ app:
     prospect: Prospect ?
     message: Message
     company: Entreprise
+    
+  category:
+    name: Nom
+    parent: Catégorie parente
+    contacts: Contacts
+    companies: Entreprises
+    
+  source:
+    name: Source
     
   
     
