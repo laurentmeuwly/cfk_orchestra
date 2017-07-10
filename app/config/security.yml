@@ -5,8 +5,21 @@ security:
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    olivia:
+                        password: cfk-os2017
+                        roles: 'ROLE_ADMIN'
+                    nicolas:
+                        password: 2012CFK1763
+                        roles: 'ROLE_ADMIN'
+                    admin:
+                        password: 6sDNa2VQ
+                        roles: 'ROLE_ADMIN'
 
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+    
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -18,7 +31,12 @@ security:
             # activate different ways to authenticate
 
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
+            http_basic: ~
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             #form_login: ~
+
+    access_control:
+        #require ROLE_ADMIN for /
+        - { path: '^/', roles: ROLE_ADMIN }
+            
