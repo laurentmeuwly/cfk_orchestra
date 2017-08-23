@@ -1,5 +1,29 @@
 easy_admin:
     entities:
+        CompanyFilter:
+            class: AppBundle\Entity\Company
+            label: 'Entr. sans langue ou email'
+            list:
+                title: app.list.company
+                sort: ['name', 'ASC']
+                dql_filter: "entity.language is NULL OR entity.language='' OR entity.email is NULL OR entity.email=''"
+                actions:
+                    - { name: 'show',             label: '', icon: 'search' }
+                    - { name: 'edit',             label: '', icon: 'edit' }
+                    - { name: 'delete',           label: '', icon: 'trash' }
+                fields:
+                    - { property: 'name',         label: app.company.name }
+                    - { property: 'address',      label: app.company.address }
+                    - { property: 'postalcode',   label: app.company.postalcode }
+                    - { property: 'city',         label: app.company.city }
+                    - { property: 'countrycode',  label: app.company.country }
+                    - { property: 'language',     label: app.company.language }
+                    - { property: 'description',  label: app.company.description }
+                    - { property: 'email',        label: app.company.email }
+                    - { property: 'contacts',     label: app.company.contacts }
+                    - { property: 'getallcategories', label: app.company.categories}
+                    - { property: 'newsletter',   label: app.company.newsletter }
+                    - { property: 'isProspect',   label: app.company.prospect }               
         Company:
             class: AppBundle\Entity\Company
             label: app.menu.company
