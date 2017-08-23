@@ -1,5 +1,28 @@
 easy_admin:
     entities:
+        ContactGender:
+            class: AppBundle\Entity\Contact
+            label: C. genre indéfini
+            
+            list:
+                title: app.list.contact
+                sort: ['lastname', 'ASC']
+                dql_filter: "entity.gender is NOT NULL AND entity.gender!='' AND entity.gender not in ('Herr', 'Frau', 'Monsieur', 'Madame') "
+                
+                actions:
+                    - { name: 'show',             label: '', icon: 'search' }
+                    - { name: 'edit',             label: '', icon: 'edit' }
+                    - { name: 'delete',           label: '', icon: 'trash' }
+                fields:
+                    - { property: 'gender',       label: app.contact.gender }
+                    - { property: 'lastname',     label: app.contact.lastname }
+                    - { property: 'firstname',    label: app.contact.firstname }
+                    - { property: 'email',        label: app.contact.email }
+                    - { property: 'language',     label: app.contact.language }
+                    - { property: 'company',      label: app.contact.company }
+                    - { property: 'getallcategories', label: app.contact.categories }
+                    - { property: 'newsletter',   label: app.contact.newsletter }
+        
         ContactNoGenderOrLanguage:
             class: AppBundle\Entity\Contact
             label: C. sans genre ou langue
