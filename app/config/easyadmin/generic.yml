@@ -18,6 +18,10 @@ easy_admin:
             label_null: '::label_null.html.twig'
         menu:
             - { entity: 'Contact', icon: 'address-book' }
+            - { entity: 'ContactNoGenderOrLanguage', icon: 'address-book' }
+            - { entity: 'ContactNoEmail', icon: 'address-book' }
+            
+            
             - { entity: 'Company', icon: 'building' }
             - { entity: 'CompanyFilter', icon: 'building' }
             - { label: app.menu.mailchimp }
