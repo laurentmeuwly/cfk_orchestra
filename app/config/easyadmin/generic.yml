@@ -19,6 +19,7 @@ easy_admin:
         menu:
             - { entity: 'Contact', icon: 'address-book' }
             - { entity: 'Company', icon: 'building' }
+            - { entity: 'CompanyFilter', icon: 'building' }
             - { label: app.menu.mailchimp }
             - { label: app.menu.information, route: 'mailchimp', icon: 'info-circle' }
             - { label: app.menu.configuration }
