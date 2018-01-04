@@ -51,7 +51,6 @@ app:
     language: Langue
     newsletter: Newsletter ?
     categories: Catégories
-    prospect: Prospect ?
     description: Description
     contacts: Contacts
     
@@ -71,7 +70,6 @@ app:
     language: Langue
     newsletter: Newsletter ?
     categories: Catégories
-    prospect: Prospect ?
     message: Message
     company: Entreprise
     
