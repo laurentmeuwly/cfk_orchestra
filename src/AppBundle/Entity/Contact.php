@@ -128,13 +128,6 @@ class Contact
     private $message;
     
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_prospect", type="boolean", nullable=false)
-     */
-    private $isProspect = false;
-    
-    /**
      * @ORM\ManyToOne(targetEntity="Company", inversedBy="contacts")
      */
     private $company;
@@ -528,30 +521,7 @@ class Contact
     {
     	return $this->message;
     }
-    
-    /**
-     * Set isProspect
-     *
-     * @param boolean $isProspect
-     *
-     * @return Contact
-     */
-    public function setIsProspect($isProspect)
-    {
-    	$this->isProspect = $isProspect;
-    
-    	return $this;
-    }
-    
-    /**
-     * Get isProspect
-     *
-     * @return boolean
-     */
-    public function getIsProspect()
-    {
-    	return $this->isProspect;
-    }
+
     
     /**
      * 
@@ -675,4 +645,3 @@ class Contact
     	return $str;
     }
 }
-

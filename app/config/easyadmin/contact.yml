@@ -126,8 +126,7 @@ easy_admin:
                     - { property: 'newsletter',   label: app.contact.newsletter }  
                     - { property: 'language',     label: app.contact.language }    
                     - { property: 'categories',   label: app.contact.categories, type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Category' } }
-                    - { property: 'isProspect',   label: app.contact.prospect }
-
+                    
                     - { type: 'group', css_class: 'new-row' }
                     
                     - { type: 'group',            label: app.label_group.description,
@@ -159,7 +158,6 @@ easy_admin:
                     - { property: 'newsletter',   label: app.contact.newsletter }
                     - { property: 'language',     label: app.contact.language } 
                     - { property: 'categories',   label: app.contact.categories }
-                    - { property: 'isProspect',   label: app.contact.prospect }
                     - { property: 'message',      label: app.contact.message }
                     - { property: 'source',       label: app.contact.source }
                     - { property: 'createdAt',    label: app.label_generic.createdat }
