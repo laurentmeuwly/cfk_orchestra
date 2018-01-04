@@ -118,13 +118,6 @@ class Company
     private $description;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_prospect", type="boolean", nullable=false)
-     */
-    private $isProspect;
-    
-    /**
      * @ORM\ManyToMany(targetEntity="Category", cascade={"persist"})
      */
     private $categories;
@@ -462,31 +455,6 @@ class Company
     {
         return $this->description;
     }
-    
-    /**
-     * Set isProspect
-     *
-     * @param boolean $isProspect
-     *
-     * @return Company
-     */
-    public function setIsProspect($isProspect)
-    {
-    	$this->isProspect = $isProspect;
-    
-    	return $this;
-    }
-    
-    /**
-     * Get isProspect
-     *
-     * @return boolean
-     */
-    public function getIsProspect()
-    {
-    	return $this->isProspect;
-    }
-
 
     public function addCategory(Category $category)
     {
@@ -616,4 +584,3 @@ class Company
     	return $str;
     }
 }
-
