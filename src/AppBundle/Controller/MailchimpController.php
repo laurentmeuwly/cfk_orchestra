@@ -22,7 +22,7 @@ use AppBundle\Entity\Contact;
  */
 class MailchimpController extends Controller
 {
-	const MAILCHIMP_API_KEY = '4c72d8f0172e8240dca4469ccabc7f39-us7';
+	const MAILCHIMP_API_KEY = '';
 	
 	/**
 	 * @Route("/config", name="mailchimp")
@@ -47,19 +47,19 @@ class MailchimpController extends Controller
 	{
 		$infos['syncedContact'] = 0;
 		$infos['unsyncedContact'] = 0;
-		
+		$counter=0;
 		$sync = $this->container->get('mailchimp.sync');
 		
 		$em = $this->container->get('doctrine')->getManager();
 		// Turning off doctrine default logs queries for saving memory
 		$em->getConnection()->getConfiguration()->setSQLLogger(null);
 		
-		$contacts = $em->getRepository('AppBudle:Contact')->findAll();
+		$contacts = $em->getRepository('AppBundle:Contact')->findAll();
 		
 		foreach($contacts as $contact)
 		{
 			if($contact->getNewsletter() && $contact->getEmail()!='') {
-				$sync->newContact($entity);
+				$sync->newContact($contact);
 				$infos['syncedContact']++;
 			} else {
 				$infos['unsyncedContact']++;
