@@ -78,7 +78,7 @@ easy_admin:
                                                   icon: 'envelope-o' }
                     - { property: 'email',        label: app.contact.email }
                     - { property: 'newsletter',   label: app.contact.newsletter }  
-                    - { property: 'language',     label: app.contact.language }    
+                    - { property: 'language',     type: 'choice', type_options: { expanded: false, choices: {'FR':'FR', 'DE':'DE'} }}   
                     - { property: 'categories',   label: app.contact.categories, type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Category' } }
                     
                     - { type: 'group', css_class: 'new-row' }
