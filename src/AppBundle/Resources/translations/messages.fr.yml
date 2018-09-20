@@ -1,4 +1,29 @@
 
+form:
+  label:
+    firstname: Prénom
+    lastname: Nom
+    email: Email
+    message: Message
+    newsletter: Je m'inscris à la newsletter
+    consent: Par email
+    submit: Envoyer
+    file:
+      outlook: Fichier issu de Outlook
+      winbiz: Fichier issu de Winbiz
+      std: Fichier manuel
+    info: Source Outlook (p.ex Olivia)
+  field:
+    firstname: Votre prénom
+    lastname: Votre Nom
+    email: Votre email
+    message: Votre message
+    info: Indiquez une note pour cet import
+    
+rgpd:
+  consent: Voici le texte compatible avec le rgpb<br/>Comme il est long, il faut l'escapé afin de conserver les balise html.
+
+
 Company: entreprise
 Contact: contact
 Category: catégorie
@@ -16,6 +41,7 @@ app:
     category: Catégories
     source: Sources
     impressum: Impressum
+    import: Importation des données
     
   warning:
       admin_only: Réservé pour l'administrateur
@@ -56,6 +82,7 @@ app:
     
   contact:
     gender: Civilité
+    title: Civilité
     lastname: Nom
     firstname: Prénom
     address:  Rue

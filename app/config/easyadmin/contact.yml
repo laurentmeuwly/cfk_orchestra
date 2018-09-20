@@ -38,7 +38,6 @@ easy_admin:
                     - { name: 'edit',             label: '', icon: 'edit' }
                     - { name: 'delete',           label: '', icon: 'trash' }
                 fields:
-                    - { property: 'gender',       label: app.contact.gender }
                     - { property: 'title',       label: app.contact.title }
                     - { property: 'lastname',     label: app.contact.lastname }
                     - { property: 'firstname',    label: app.contact.firstname }
@@ -53,8 +52,7 @@ easy_admin:
                     - { type: 'group',            label: app.label_group.basic,
                                                   css_class: 'col-sm-4', 
                                                   icon: 'pencil' }
-                    - { property: 'gender',       label: app.contact.gender }
-                    - { property: 'title',       label: app.contact.title }
+                    - { property: 'title',        label: app.contact.title }
                     - { property: 'lastname',     label: app.contact.lastname }
                     - { property: 'firstname',    label: app.contact.firstname }
                     - { property: 'address',      label: app.contact.address }
@@ -100,7 +98,7 @@ easy_admin:
             show:
                 fields:
                     - id
-                    - { property: 'gender',       label: app.contact.gender }
+                    - { property: 'title',        label: app.contact.title }
                     - { property: 'lastname',     label: app.contact.lastname }
                     - { property: 'firstname',    label: app.contact.firstname }
                     - { property: 'address',      label: app.contact.address }
