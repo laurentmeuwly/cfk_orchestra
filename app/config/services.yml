@@ -10,4 +10,9 @@ services:
    
     import.csvtoarray:
         class: AppBundle\Services\ConvertCsvToArray
+        
+    mailchimp.sync:
+        class: AppBundle\Services\SyncMailchimp
+        arguments: ['@event_dispatcher']
+        public: true
    

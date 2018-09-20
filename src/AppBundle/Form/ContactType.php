@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -16,10 +17,15 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array('attr' => array('placeholder' => 'Your name'),
+            ->add('firstname', TextType::class, array('attr' => array('placeholder' => 'Your firstname'),
                 'constraints' => array(
-                    new NotBlank(array("message" => "Please provide your name")),
+                    new NotBlank(array("message" => "Please provide your firstname")),
                 )
+            ))
+            ->add('lastname', TextType::class, array('attr' => array('placeholder' => 'Your lastname'),
+            	'constraints' => array(
+            			new NotBlank(array("message" => "Please provide your lastname")),
+            	)
             ))
             ->add('subject', TextType::class, array('attr' => array('placeholder' => 'Subject'),
                 'constraints' => array(
@@ -37,6 +43,7 @@ class ContactType extends AbstractType
                     new NotBlank(array("message" => "Please provide a message here")),
                 )
             ))
+            ->add('newsletter', CheckboxType::class, array('label' => 'Newsletter ?', 'attr' => array('label' => 'Newsletter ?')))
         ;
     }
 

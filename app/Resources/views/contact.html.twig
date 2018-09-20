@@ -8,9 +8,13 @@
         {{ form_widget(form.subject) }}
         {{ form_errors(form.subject) }}
     </div>
+     <div>
+        {{ form_widget(form.firstname) }}
+        {{ form_errors(form.firstname) }}
+    </div>
     <div>
-        {{ form_widget(form.name) }}
-        {{ form_errors(form.name) }}
+        {{ form_widget(form.lastname) }}
+        {{ form_errors(form.lastname) }}
     </div>
     <div>
         {{ form_widget(form.email) }}
@@ -19,6 +23,10 @@
     <div>
         {{ form_widget(form.message) }}
         {{ form_errors(form.message) }}
+    </div>
+    <div>
+        {{ form_widget(form.newsletter) }}
+        {{ form_label(form.newsletter) }}
     </div>
 
     {# Render CSRF token etc .#}

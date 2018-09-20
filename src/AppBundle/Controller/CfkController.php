@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use ReCaptcha\ReCaptcha;
+use AppBundle\Entity\Contact;
 
 class CfkController extends Controller
 {
@@ -36,8 +37,31 @@ class CfkController extends Controller
             }else{
             
 	            if($form->isValid()){
+	            	
+	            	//Getting doctrine manager
+	            	$em = $this->container->get('doctrine')->getManager();
+	            	// Turning off doctrine default logs queries for saving memory
+	            	$em->getConnection()->getConfiguration()->setSQLLogger(null);
+	            	
+	            	$formData = $form->getData();
+	            	// save the contact
+	            	$contact = new Contact();
+	            	$contact->setEmail($formData["email"]);
+	            	$contact->setFirstname($formData["firstname"]);
+	            	$contact->setLastname($formData["lastname"]);
+	            	$contact->setNewsletter($formData["newsletter"]==true ? 1 :0);
+	            	
+	            	if($contact->getNewsletter() && $contact->getEmail()!='') {
+	            		$sync = $this->container->get('mailchimp.sync');
+	            		$sync->newContact($contact);
+	            	}
+	            	
+	            	$em->persist($contact);
+	            	$em->flush();
+	            	$em->clear();
+	            	
 	                // Send mail
-	                if($this->sendEmail($form->getData())){
+	                if($this->sendEmail($formData)){
 	                    // Everything OK, redirect to wherever you want ! :
 	                    return $this->redirectToRoute('thanks');
 	                }else{
@@ -72,8 +96,8 @@ class CfkController extends Controller
 
         $mailer = \Swift_Mailer::newInstance($transport);
         
-        $message = \Swift_Message::newInstance("Our Code World Contact Form ". $data["subject"])
-        ->setFrom(array($myappContactMail => "Message by ".$data["name"]))
+        $message = \Swift_Message::newInstance("Demande de contact: ". $data["subject"])
+        ->setFrom(array($data["email"] => $data["firstname"] . ' ' . $data["lastname"]))
         ->setTo(array(
             $myappContactMail => $myappContactMail
         ))
@@ -81,4 +105,5 @@ class CfkController extends Controller
         
         return $mailer->send($message);
     }
+    
 }

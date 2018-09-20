@@ -4,13 +4,13 @@
 
 {% block content_title %}
 {% spaceless %}
-   Informations Mailchimp
+   <h2>Informations Mailchimp</h2>
 {% endspaceless %}
 {% endblock %}
 
 {% block main %}
 
-Votre compte Mailchimp: **********
+<h3>Listes disponibles</h3>
 {# début de la table #}
 <table width="850px">
 <thead>
@@ -18,6 +18,8 @@ Votre compte Mailchimp: **********
 	<th style="text-align: left;" width="200px">Id</th>
 	<th style="text-align: left;" width="300px">Nom</th>
 	<th style="text-align: left;" width="350px">Nb inscrits</th>
+	<th style="text-align: left;" width="350px">Nb désinscriptions</th>
+	<th style="text-align: left;" width="350px">Dernière newsletter</th>
 </tr>
 </thead>
 
@@ -26,12 +28,21 @@ Votre compte Mailchimp: **********
 <tr>
 	<td>{{ list.id}}</td>
 	<td>{{ list.name }}</td>
-	<td>{{ addInfos[list.id].nb_members }}</td>
+	<td>{{ list.stats['member_count'] }}</td>
+	<td>{{ list.stats['unsubscribe_count'] }}</td>
+	<td>{{ list.stats['campaign_last_sent'] is empty ? "" : list.stats['campaign_last_sent']|date('j.m.Y') }}</td>
 </tr>
 {%  endfor %}
 </tbody>
 
 </table>
 {# fin de la table #}
+
+{# informations de synchronisation, si existantes #}
+{% if infos %}
+<span>Nombres contacts synchronisés: {{ info['syncedContact'] }}</span>
+<span>Nombres contacts non synchronisés: {{ info['unsyncedContact'] }}</span>
+{% endif %}
+{# fin informations de synchronisation, si existantes #}
 
 {% endblock %}

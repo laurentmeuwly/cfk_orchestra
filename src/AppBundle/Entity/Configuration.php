@@ -96,4 +96,3 @@ class Configuration
         return $this->value;
     }
 }
-

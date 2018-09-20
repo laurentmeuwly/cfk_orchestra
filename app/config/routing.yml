@@ -3,7 +3,8 @@
 #    type: annotation
 
 easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/"
+    #resource: "@EasyAdminBundle/Controller/"
+    resource: "@AppBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /
     
@@ -11,6 +12,10 @@ mailchimp_config:
     resource: "@AppBundle/Controller/MailchimpController.php"
     type:     annotation
     prefix:   /mailchimp
+
+mailchimp_webhook:
+    resource: "@WelpMailchimpBundle/Resources/config/routing.yml"
+    prefix:   /mchook
     
 impressum:
     resource: "@AppBundle/Controller/DefaultController.php"

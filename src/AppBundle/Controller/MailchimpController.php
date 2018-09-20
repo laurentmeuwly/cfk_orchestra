@@ -6,10 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 //use Welp\MailchimpBundle\Subscriber\ListRepository;
+//use Welp\MailchimpBundle\WelpMailchimpBundle;
 use AppBundle\Subscriber\ExtListRepository;
+
+use Welp\MailchimpBundle\Event\SubscriberEvent;
 use Welp\MailchimpBundle\Subscriber\Subscriber;
 use \DrewM\MailChimp\MailChimp;
 use AppBundle\Form\ConfigurationType;
+
+use AppBundle\Entity\Contact;
 
 /**
  * Mailchimp controller.
@@ -17,26 +22,58 @@ use AppBundle\Form\ConfigurationType;
  */
 class MailchimpController extends Controller
 {
-	const MAILCHIMP_API_KEY = '*****';
-	const LIST_ID = 'edadf194f0';
+	const MAILCHIMP_API_KEY = '4c72d8f0172e8240dca4469ccabc7f39-us7';
 	
 	/**
 	 * @Route("/config", name="mailchimp")
 	 */
 	public function configAction()
 	{
+		$infos = array();
 		$mailchimp = new MailChimp(self::MAILCHIMP_API_KEY);
-		$this->listRepository = new ExtListRepository($mailchimp);
 		
-		$lists = $this->listRepository->findAll();
+		$listRepository = new ExtListRepository($mailchimp);
+		$lists = $listRepository->findAll();
 		
-		foreach($lists as $list)
-		{
-			$members = $this->listRepository->getMembers($list['id']);
-			$addInfos[$list['id']]['nb_members'] = sizeof($members);
-		}		
 		
-		$form = $this->createForm(ConfigurationType::class);
-		return $this->render('::mailchimp.html.twig', array('lists' => $lists, 'addInfos' => $addInfos));
+		//$form = $this->createForm(ConfigurationType::class);
+		return $this->render('::mailchimp.html.twig', array('lists' => $lists, 'infos' => $infos));
 	}
+	
+	/**
+	 * @Route("/batchsync", name="batchsync")
+	 */
+	public function batchsyncAction()
+	{
+		$infos['syncedContact'] = 0;
+		$infos['unsyncedContact'] = 0;
+		
+		$sync = $this->container->get('mailchimp.sync');
+		
+		$em = $this->container->get('doctrine')->getManager();
+		// Turning off doctrine default logs queries for saving memory
+		$em->getConnection()->getConfiguration()->setSQLLogger(null);
+		
+		$contacts = $em->getRepository('AppBudle:Contact')->findAll();
+		
+		foreach($contacts as $contact)
+		{
+			if($contact->getNewsletter() && $contact->getEmail()!='') {
+				$sync->newContact($entity);
+				$infos['syncedContact']++;
+			} else {
+				$infos['unsyncedContact']++;
+			}
+		}
+		
+		$mailchimp = new MailChimp(self::MAILCHIMP_API_KEY);
+		
+		$listRepository = new ExtListRepository($mailchimp);
+		$lists = $listRepository->findAll();
+		
+		
+		//$form = $this->createForm(ConfigurationType::class);
+		return $this->render('::mailchimp.html.twig', array('lists' => $lists, 'infos' => $infos));
+	}
+
 }

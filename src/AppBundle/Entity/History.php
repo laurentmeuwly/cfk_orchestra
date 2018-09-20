@@ -94,4 +94,3 @@ class History
         return $this->description;
     }
 }
-

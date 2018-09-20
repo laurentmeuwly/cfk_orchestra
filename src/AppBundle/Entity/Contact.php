@@ -376,7 +376,8 @@ class Contact
     public function getNewsletter()
     {
     	return $this->newsletter;
-    }
+    }    
+    
     
     /**
      * Set address
