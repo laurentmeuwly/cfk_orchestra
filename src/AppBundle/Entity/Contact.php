@@ -26,6 +26,14 @@ class Contact
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="Title")
+     * 
+     */
+    private $title;
 
     /**
      * @var string
@@ -186,6 +194,29 @@ class Contact
         return $this->id;
     }
 
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Contact
+     */
+    public function setTitle($title)
+    {
+    	$this->title = $title;
+    	return $this;
+    }
+    
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+    	return $this->title;
+    }
+    
     /**
      * Set firstname
      *

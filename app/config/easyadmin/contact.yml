@@ -23,29 +23,6 @@ easy_admin:
                     - { property: 'getallcategories', label: app.contact.categories }
                     - { property: 'newsletter',   label: app.contact.newsletter }
         
-        ContactNoEmail:
-            class: AppBundle\Entity\Contact
-            label: C. sans email
-            
-            list:
-                title: app.list.contact
-                sort: ['lastname', 'ASC']
-                dql_filter: "entity.email is NULL OR entity.email=''"
-                
-                actions:
-                    - { name: 'show',             label: '', icon: 'search' }
-                    - { name: 'edit',             label: '', icon: 'edit' }
-                    - { name: 'delete',           label: '', icon: 'trash' }
-                fields:
-                    - { property: 'gender',       label: app.contact.gender }
-                    - { property: 'lastname',     label: app.contact.lastname }
-                    - { property: 'firstname',    label: app.contact.firstname }
-                    - { property: 'email',        label: app.contact.email }
-                    - { property: 'language',     label: app.contact.language }
-                    - { property: 'company',      label: app.contact.company }
-                    - { property: 'getallcategories', label: app.contact.categories }
-                    - { property: 'newsletter',   label: app.contact.newsletter }
-        
         Contact:
             class: AppBundle\Entity\Contact
             label: app.menu.contact
@@ -62,6 +39,7 @@ easy_admin:
                     - { name: 'delete',           label: '', icon: 'trash' }
                 fields:
                     - { property: 'gender',       label: app.contact.gender }
+                    - { property: 'title',       label: app.contact.title }
                     - { property: 'lastname',     label: app.contact.lastname }
                     - { property: 'firstname',    label: app.contact.firstname }
                     - { property: 'email',        label: app.contact.email }
@@ -76,6 +54,7 @@ easy_admin:
                                                   css_class: 'col-sm-4', 
                                                   icon: 'pencil' }
                     - { property: 'gender',       label: app.contact.gender }
+                    - { property: 'title',       label: app.contact.title }
                     - { property: 'lastname',     label: app.contact.lastname }
                     - { property: 'firstname',    label: app.contact.firstname }
                     - { property: 'address',      label: app.contact.address }

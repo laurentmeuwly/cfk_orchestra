@@ -19,14 +19,14 @@ easy_admin:
         menu:
             - { entity: 'Contact', icon: 'address-book' }
             - { entity: 'Company', icon: 'building' }
-            - { label: 'Temp nettoyage' }
+            - { label: 'Traitement' }
+            - { label: app.menu.import, route: 'import', icon: 'download' }
             - { entity: 'ContactNoGenderOrLanguage', icon: 'address-book' }
-            - { entity: 'ContactNoEmail', icon: 'address-book' }
             - { label: app.menu.mailchimp }
             - { label: app.menu.information, route: 'mailchimp', icon: 'info-circle' }
             - { label: app.menu.configuration }
             - { entity: 'Category', icon: 'tags'}
-            - { entity: 'Source', icon: 'filter'}
+            - { entity: 'User', icon: 'user' }
             - { label: app.menu.about }
             - { label: app.menu.impressum, route: 'impressum', icon: 'info' }
             
