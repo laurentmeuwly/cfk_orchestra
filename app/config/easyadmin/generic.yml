@@ -22,8 +22,8 @@ easy_admin:
             - { label: 'Traitement' }
             - { label: app.menu.import, route: 'import', icon: 'download' }
             - { entity: 'ContactNoGenderOrLanguage', icon: 'address-book' }
-            - { label: app.menu.mailchimp }
-            - { label: app.menu.information, route: 'mailchimp', icon: 'info-circle' }
+            - { label: app.menu.mailing }
+            - { label: app.menu.information, route: 'sendinblue', icon: 'info-circle' }
             - { label: app.menu.configuration }
             - { entity: 'Category', icon: 'tags'}
             - { entity: 'User', icon: 'user' }

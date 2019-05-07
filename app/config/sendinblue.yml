@@ -1,0 +1,8 @@
+sendinblue_api:
+    default_client: cfk
+    clients:
+        cfk:
+            endpoints: [account, lists, email_campaigns]
+            key: '%sendinblue_api_key%'
+       
+      
