@@ -22,7 +22,7 @@ use AppBundle\Entity\Contact;
  */
 class MailchimpController extends Controller
 {
-	const MAILCHIMP_API_KEY = '';
+	const MAILCHIMP_API_KEY = '4c72d8f0172e8240dca4469ccabc7f39-us7';
 	
 	/**
 	 * @Route("/config", name="mailchimp")

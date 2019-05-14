@@ -152,7 +152,7 @@ class ImportCommand extends ContainerAwareCommand
     	
     	// Define the size of record, the frequency for persisting the data and the current index of records
     	$size = count($data);
-    	$batchSize = 1;
+    	$batchSize = 100;
     	$i = 1;
     	
     	// Starting progress
@@ -196,17 +196,9 @@ class ImportCommand extends ContainerAwareCommand
     		$contact->setLanguage($row['language']);
     		
     		// email should be NULL or unique
-    		/*if($row['email']!='') {
-    			$contactEmailAlreadyExists = $em->getRepository('AppBundle:Contact')->findOneByEmail($row['email']);
-    			if(is_object($contactEmailAlreadyExists)) {
-    				$contactEmailAlreadyExists->setEmail($contactEmailAlreadyExists->getEmail() . ' (doublon 1)');
-    				$em->persist($contactEmailAlreadyExists);
-    				$extEmail = $row['email'] . ' (doublon 2)';
-    				$contact->setEmail($extEmail);
-    			} else {
-    				$contact->setEmail($row['email']);
-    			}
-    		}*/
+    		if($row['email']!='') {
+    			$contact->setEmail($row['email']);
+    		}
     		
     		if($row['newsletter old']=='true' || $row['newsletter old']=='Oui') {
     			$contact->setNewsletter(1);
@@ -284,11 +276,18 @@ class ImportCommand extends ContainerAwareCommand
     	
     	// Processing on each row of data
     	foreach($data as $row) {
-    	
     		if($row['company']!=$row['name']) {
     			$name = $row['company'] . ' ' . $row['name'];
-    			if($row['company']=='Commune') {
+    			if($row['company']=='Commune' || $row['company']=='commune') {
     				$category = $em->getRepository('AppBundle:Category')->findOneByName('Administrations communales');
+    				if($row['language']=='Deutsch') {
+    					$name = 'Gemeinde ' . $row['name'];
+    				} elseif($row['language']=='Français') {
+    					$prep = preg_match('/^[aeiouy]/i', $row['name']) ? "Commune d'" : "Commune de ";
+    					$name = $prep . $row['name'];
+    				} else {
+    					$name = $row['company'] . ' ' . $row['name'];
+    				}
     				$setEmail = true;
     			} elseif($row['company']=='Fan Club') {
     				$category = $em->getRepository('AppBundle:Category')->findOneByName('Fan Club voiture');
@@ -297,7 +296,7 @@ class ImportCommand extends ContainerAwareCommand
 	    			$category = $em->getRepository('AppBundle:Category')->findOneByName('Organisations touristiques');
 	    			$setEmail = true;
 	    		} elseif($row['company']=='concours à Fribourg Centre, oct 2013') {
-	    			// here we have contact, and not companies, so break the loop
+	    			// here we have contact, and not a company, so break the loop
 	    			break;
 	    			//$category = $em->getRepository('AppBundle:Category')->findOneByName('Concours');
 	    		} elseif($row['firstname']!=''){
@@ -339,6 +338,7 @@ class ImportCommand extends ContainerAwareCommand
     		$leads->setCity($row['city']);
     		$leads->setCountrycode($row['country']);
     		$leads->setDescription($row['description']);
+    		$leads->setLanguage($row['language']);
     		$leads->setIsProspect(1);
     		
     		if($setEmail && $row['email'])
