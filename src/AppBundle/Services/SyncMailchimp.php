@@ -16,7 +16,9 @@ class SyncMailchimp
 	{
 		$this->event_dispatcher = $event_dispatcher;
 		//CFK Newsletter: d35d5000c9
-		$this->listId = 'f1723d9027';
+		//Contacts CFK: 57b0fba342
+		//Test: f1723d9027
+		$this->listId = '57b0fba342';
 	}
 	
 	public function newContact(Contact $contact)
