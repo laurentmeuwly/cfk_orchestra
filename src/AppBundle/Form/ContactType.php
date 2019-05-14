@@ -14,48 +14,50 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContactType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('firstname', TextType::class, array('attr' => array('placeholder' => 'Your firstname'),
-                'constraints' => array(
-                    new NotBlank(array("message" => "Please provide your firstname")),
-                )
-            ))
-            ->add('lastname', TextType::class, array('attr' => array('placeholder' => 'Your lastname'),
-            	'constraints' => array(
-            			new NotBlank(array("message" => "Please provide your lastname")),
-            	)
-            ))
-            ->add('subject', TextType::class, array('attr' => array('placeholder' => 'Subject'),
-                'constraints' => array(
-                    new NotBlank(array("message" => "Please give a Subject")),
-                )
-            ))
-            ->add('email', EmailType::class, array('attr' => array('placeholder' => 'Your email address'),
-                'constraints' => array(
-                    new NotBlank(array("message" => "Please provide a valid email")),
-                    new Email(array("message" => "Your email doesn't seems to be valid")),
-                )
-            ))
-            ->add('message', TextareaType::class, array('attr' => array('placeholder' => 'Your message here'),
-                'constraints' => array(
-                    new NotBlank(array("message" => "Please provide a message here")),
-                )
-            ))
-            ->add('newsletter', CheckboxType::class, array('label' => 'Newsletter ?', 'attr' => array('label' => 'Newsletter ?')))
-        ;
-    }
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder
+		->add('firstname', TextType::class, array('label' => 'form.label.firstname', 'attr' => array('placeholder' => 'form.field.firstname', 'class' => 'form-control', 'style' => 'margin-bottom:15px'),
+				'constraints' => array(
+						new NotBlank(array("message" => "Please provide your firstname")),
+				)
+		))
+		->add('lastname', TextType::class, array('label' => 'form.label.lastname', 'attr' => array('placeholder' => 'form.field.lastname', 'class' => 'form-control', 'style' => 'margin-bottom:15px'),
+				'constraints' => array(
+						new NotBlank(array("message" => "Please provide your lastname")),
+				)
+		))
+		->add('subject', TextType::class, array('label' => 'form.label.subject', 'attr' => array('placeholder' => 'Subject', 'class' => 'form-control', 'style' => 'margin-bottom:15px'),
+				'constraints' => array(
+						new NotBlank(array("message" => "Please give a Subject")),
+				)
+		))
+		->add('email', EmailType::class, array('label' => 'form.label.email', 'attr' => array('placeholder' => 'form.field.email', 'class' => 'form-control', 'style' => 'margin-bottom:15px'),
+				'constraints' => array(
+						new NotBlank(array("message" => "Please provide a valid email")),
+						new Email(array("message" => "Your email doesn't seems to be valid")),
+				)
+		))
+		->add('message', TextareaType::class, array('label' => 'form.label.message', 'attr' => array('placeholder' => 'form.field.message', 'class' => 'form-control', 'style' => 'margin-bottom:15px'),
+				'constraints' => array(
+						new NotBlank(array("message" => "Please provide a message here")),
+				)
+		))
+		->add('newsletter', CheckboxType::class, array('label' => 'form.label.newsletter', 'attr' => array('class' => 'form-check-input', 'style' => 'margin-bottom:15px')))
 
-    public function setDefaultOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'error_bubbling' => true
-        ));
-    }
+		->add('consent', CheckboxType::class, array('label' => 'form.label.consent', 'attr' => array('class' => 'form-check-input', 'style' => 'margin-bottom:15px')))
+		;
+	}
 
-    public function getName()
-    {
-        return 'contact_form';
-    }
+	public function setDefaultOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults(array(
+				'error_bubbling' => false
+		));
+	}
+
+	public function getName()
+	{
+		return 'contact_form';
+	}
 }

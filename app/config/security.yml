@@ -1,42 +1,45 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/security.html
+# app/config/securtiy.yml
 security:
 
-    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
-    providers:
-        in_memory:
-            memory:
-                users:
-                    olivia:
-                        password: cfk-os2017
-                        roles: 'ROLE_ADMIN'
-                    nicolas:
-                        password: cfk-nz2017
-                        roles: 'ROLE_ADMIN'
-                    admin:
-                        password: 6sDNa2VQ
-                        roles: 'ROLE_ADMIN'
-
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        FOS\UserBundle\Model\UserInterface: bcrypt
+        
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+            
+        #in_memory:
+        #    memory:
+        #        users:
+        #            olivia:
+        #                password: cfk-os2017
+        #                roles: 'ROLE_ADMIN'
+        #            nicolas:
+        #                password: cfk-nz2017
+        #                roles: 'ROLE_ADMIN'
+        #            admin:
+        #                password: 6sDNa2VQ
+        #                roles: 'ROLE_ADMIN'
     
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
         main:
-            anonymous: ~
-            # activate different ways to authenticate
-
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            http_basic: ~
-
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-            #form_login: ~
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+    
+            logout:       true
+            anonymous:    true
 
     access_control:
-        #require ROLE_ADMIN for /
-        - { path: '^/', roles: ROLE_ADMIN }
-            
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: ROLE_USER }

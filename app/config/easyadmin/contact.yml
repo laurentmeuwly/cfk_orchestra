@@ -29,10 +29,11 @@ easy_admin:
             
             #search:
                 #fields: [firstname, lastname, email, company]
-                
+             
             list:
                 title: app.list.contact
                 sort: ['lastname', 'ASC']
+                role: ROLE_USER
                 actions:
                     - { name: 'show',             label: '', icon: 'search' }
                     - { name: 'edit',             label: '', icon: 'edit' }
@@ -77,7 +78,7 @@ easy_admin:
                                                   css_class: 'col-sm-4', 
                                                   icon: 'envelope-o' }
                     - { property: 'email',        label: app.contact.email }
-                    - { property: 'newsletter',   label: app.contact.newsletter }  
+                    - { property: 'newsletter',   label: app.contact.newsletter, role: ROLE_ADMIN }  
                     - { property: 'language',     type: 'choice', type_options: { expanded: false, choices: {'FR':'FR', 'DE':'DE'} }}   
                     - { property: 'categories',   label: app.contact.categories, type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Category' } }
                     

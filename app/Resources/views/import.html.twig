@@ -1,0 +1,40 @@
+{% extends 'EasyAdminBundle:default:layout.html.twig' %} 
+
+
+
+{% block content_title %}
+{% spaceless %}
+   Importation de données
+{% endspaceless %}
+{% endblock %}
+
+{% block main %}
+
+<h2>Importation simple</h2>
+<p>Télécharger ici le fichier modèle à utiliser: <a href="/files/adresses.csv">Modèle</a></p>
+
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<input type="submit" value="Submit">  
+{{ form_end(form) }}
+<!-- 
+<hr style="color:#919090; background-color:#919090; height:1px;"/>
+<h2>Importation Outlook</h2>
+{{ form_start(form_outlook) }}
+{{ form_widget(form_outlook) }}
+<input type="submit" value="Submit">  
+{{ form_end(form_outlook) }}
+
+<hr style="color:#919090; background-color:#919090; height:1px;"/>
+
+<h2>Importation Winbiz</h2>
+{{ form_start(form_winbiz) }}
+{{ form_widget(form_winbiz) }}
+<input type="submit" value="Submit">  
+{{ form_end(form_winbiz) }}
+ -->
+
+
+
+
+{% endblock %}

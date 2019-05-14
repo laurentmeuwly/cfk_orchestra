@@ -2,7 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
+#use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
+use AlterPHP\EasyAdminExtensionBundle\Controller\AdminController as EasyAdminController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -27,25 +28,41 @@ class AdminController extends EasyAdminController
     
     public function prePersistContactEntity($entity)
     {
-    	if($entity->getNewsletter() && $entity->getEmail()!='') {
+    	/*if($entity->getNewsletter() && $entity->getEmail()!='') {
     		$sync = $this->container->get('mailchimp.sync');
     		$sync->newContact($entity); 
-    	}
+    	}*/
     }
     
     public function preUpdateContactEntity($entity)
     {
-    	$sync = $this->container->get('mailchimp.sync');
+    	/*$sync = $this->container->get('mailchimp.sync');
 
     	if($entity->getNewsletter()==false) {
     		$sync->unsubscribeContact($entity);
     	}
-    	$sync->updateContact($entity);
+    	$sync->updateContact($entity);*/
     }
     
     public function preDeleteContactEntity($entity)
     {
-    	$sync = $this->container->get('mailchimp.sync');
-    	$sync->delContact($entity);
+    	/*$sync = $this->container->get('mailchimp.sync');
+    	$sync->delContact($entity);*/
     }
+    
+    public function createNewUserEntity()
+    {
+    	return $this->get('fos_user.user_manager')->createUser();
+    }
+    
+    public function prePersistUserEntity($user)
+    {
+    	$this->get('fos_user.user_manager')->updateUser($user, false);
+    }
+    
+    public function preUpdateUserEntity($user)
+    {
+    	$this->get('fos_user.user_manager')->updateUser($user, false);
+    }
+    
 }

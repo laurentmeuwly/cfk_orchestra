@@ -15,4 +15,3 @@ services:
         class: AppBundle\Services\SyncMailchimp
         arguments: ['@event_dispatcher']
         public: true
-   

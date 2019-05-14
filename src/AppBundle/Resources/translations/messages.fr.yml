@@ -32,7 +32,7 @@ Source: source
 
 app:
   menu:
-    mailchimp:  MailChimp
+    mailing:  Mailing
     configuration:  Configuration
     about: A propos
     contact:  Contacts
@@ -109,5 +109,10 @@ app:
   source:
     name: Source
     
-  
+security:
+  login:
+    username: Identifiant
+    password: Mot de passe
+    remember_me: Se souvenir de moi
+    submit: Se connecter
     
