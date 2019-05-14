@@ -20,8 +20,7 @@ class AppKernel extends Kernel
             new AlterPHP\EasyAdminExtensionBundle\EasyAdminExtensionBundle(),
         	new FOS\UserBundle\FOSUserBundle(),
         	new Vich\UploaderBundle\VichUploaderBundle(),
-        	new	Welp\MailchimpBundle\WelpMailchimpBundle(),
-            new SendinBlue\Bundle\ApiBundle\SendinBlueApiBundle(),
+        	new SendinBlue\Bundle\ApiBundle\SendinBlueApiBundle(),
             new AppBundle\AppBundle(),
         ];
 

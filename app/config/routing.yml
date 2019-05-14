@@ -8,21 +8,12 @@ easy_admin_bundle:
     #resource: "@EasyAdminExtensionBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /
-    
-mailchimp_config:
-    resource: "@AppBundle/Controller/MailchimpController.php"
-    type:     annotation
-    prefix:   /mailchimp
-
+   
 sendinblue_config:
     resource: "@AppBundle/Controller/SendinblueController.php"
     type:     annotation
     prefix:   /mailing
-    
-mailchimp_webhook:
-    resource: "@WelpMailchimpBundle/Resources/config/routing.yml"
-    prefix:   /mchook
-    
+   
 impressum:
     resource: "@AppBundle/Controller/DefaultController.php"
     type:     annotation
