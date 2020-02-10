@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 //use ReCaptcha\ReCaptcha;
 use AppBundle\Entity\Contact;
 use AppBundle\Form\ContactType;
@@ -37,7 +38,7 @@ class CfkController extends Controller
         // Create the form according to the FormType created previously.
         // And give the proper parameters
         $form = $this->createForm(ContactType::class, $contact, array(
-            'action' => $this->generateUrl('cfk_contact'),
+            'action' => $this->generateUrl('cfk_contact', [], UrlGeneratorInterface::ABSOLUTE_URL),
             'method' => 'POST',
             'locale' => $request->getLocale(),
         ));          
