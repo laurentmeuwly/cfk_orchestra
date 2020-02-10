@@ -26,6 +26,25 @@ class AdminController extends EasyAdminController
     	return parent::indexAction($request);
     }
     
+    public function preUpdateCompanyEntity($entity)
+    {
+        //$sync = $this->container->get('mailchimp.sync');
+        
+        if($entity->getNewsletter()==true && $entity->getUserUnsubscription()==true) {
+            $entity->setNewsletter(false);
+        }
+        
+    }
+    
+    public function preUpdateContactEntity($entity)
+    {        
+        if($entity->getNewsletter()==true && $entity->getUserUnsubscription()==true) {
+            $entity->setNewsletter(false);
+        }
+        
+    }
+    
+    
     public function prePersistContactEntity($entity)
     {
     	/*if($entity->getNewsletter() && $entity->getEmail()!='') {
@@ -34,15 +53,15 @@ class AdminController extends EasyAdminController
     	}*/
     }
     
-    public function preUpdateContactEntity($entity)
+    /*public function preUpdateContactEntity($entity)
     {
-    	/*$sync = $this->container->get('mailchimp.sync');
+    	$sync = $this->container->get('mailchimp.sync');
 
     	if($entity->getNewsletter()==false) {
     		$sync->unsubscribeContact($entity);
     	}
-    	$sync->updateContact($entity);*/
-    }
+    	$sync->updateContact($entity);
+    }*/
     
     public function preDeleteContactEntity($entity)
     {

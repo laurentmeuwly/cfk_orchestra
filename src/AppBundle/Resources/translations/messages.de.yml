@@ -1,29 +1,29 @@
 
 form:
   label:
-    firstname: Prénom
-    lastname: Nom
-    email: Email
-    message: Message
-    newsletter: <strong>Je désire recevoir la newsletter</strong>
-    consent: Par email
-    submit: Envoyer
-    reset: Effacer
-    mister: Monsieur
-    madam: Madame
+    firstname: Vorname
+    lastname: Name
+    email: E-Mail
+    message: Nachricht
+    newsletter: <strong>Ich möchte den Newsletter erhalten</strong>
+    consent: Per E-Mail
+    submit: Senden
+    reset: Löschen
+    mister: Herr
+    madam: Frau
     file:
       outlook: Fichier issu de Outlook
       winbiz: Fichier issu de Winbiz
       std: Fichier manuel
     info: Source Outlook (p.ex Olivia)
   field:
-    firstname: Votre prénom
-    lastname: Votre Nom
-    email: Votre email
-    message: Votre message
+    firstname: Ihr Vorname
+    lastname: Ihr Name
+    email: Ihre E-Mail
+    message: Ihre Nachricht
     info: Indiquez une note pour cet import
 
-contactform: Formulaire de contact
+contactform: Kontaktform
     
 rgpd:
   consent: Voici le texte compatible avec le rgpb<br/>Comme il est long, il faut l'escapé afin de conserver les balise html.
