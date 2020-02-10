@@ -1,41 +1,100 @@
-{# contact.html.twig #}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="http://new.kaeserberg.ch/Portals/_default/Skins/CFK2019/theme.css" type="text/css" rel="stylesheet"/>
 
-<script src='https://www.google.com/recaptcha/api.js'></script>
+    <style>
+       label.required:after {
+           content: " *";
+       }
+    </style>
+</head>
+<body>
+
+{% block content%}
+
+{% trans_default_domain 'messages' %}
+<h2 class="text-center">{{ 'contactform'|trans }}</h2>
 
 {{ form_start(form) }}
-
-    <div>
-        {{ form_widget(form.subject) }}
-        {{ form_errors(form.subject) }}
-    </div>
-     <div>
-        {{ form_widget(form.firstname) }}
-        {{ form_errors(form.firstname) }}
-    </div>
-    <div>
-        {{ form_widget(form.lastname) }}
-        {{ form_errors(form.lastname) }}
-    </div>
-    <div>
-        {{ form_widget(form.email) }}
-        {{ form_errors(form.email) }}
-    </div>
-    <div>
-        {{ form_widget(form.message) }}
-        {{ form_errors(form.message) }}
-    </div>
-    <div>
-        {{ form_widget(form.newsletter) }}
-        {{ form_label(form.newsletter) }}
+<div>
+    <div class="form-group row">
+        {{ form_label(form.title) }}
+        <div class="col-sm-9 col-md-10">
+            {{ form_widget(form.title) }}
+            {{ form_errors(form.title) }}
+        </div>
     </div>
 
+    <div class="form-group row">
+        {{ form_label(form.firstname) }}
+        <div class="col-sm-9 col-md-10">
+            {{ form_widget(form.firstname) }}
+            {{ form_errors(form.firstname) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(form.lastname) }}
+        <div class="col-sm-9 col-md-10">
+            {{ form_widget(form.lastname) }}
+            {{ form_errors(form.lastname) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(form.email) }}
+        <div class="col-sm-9 col-md-10">
+            {{ form_widget(form.email) }}
+            {{ form_errors(form.email) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(form.message) }}
+        <div class="col-sm-9 col-md-10">
+            {{ form_widget(form.message) }}
+            {{ form_errors(form.message) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-3 col-md-2 col-form-label">&nbsp;</label>
+        <div class="col-sm-9 col-md-10">
+            <div class="custom-control custom-checkbox">
+                {{ form_widget(form.newsletter) }}
+                <label class="custom-control-label" for="contact_newsletter">{{ 'form.label.newsletter'|trans|raw }}</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row mt-4">
+            <label class="col-sm-3 col-md-2 col-form-label">&nbsp;</label>
+            <div class="col-sm-9 col-md-10">
+                {{ form_widget(form.save) }}
+                {{ form_widget(form.reset) }}
+            </div>
+        </div>
+
+        <div class="form-group row mt-4">
+            <label class="col-sm-3 col-md-2 col-form-label">&nbsp;</label>
+            <div class="col-sm-9 col-md-10">
+                <label class="label-help"><i>* Champs obligatoires</i></label>
+            </div>
+        </div>
+   
     {# Render CSRF token etc .#}
-    <div style="display:none">
+    <div style="">
         {{ form_rest(form) }}
     </div>
-    
-    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-    
-    <input type="submit" value="Submit">
-    
-{{ form_end(form) }}
+ 
+</div>
+    {{ form_end(form) }}
+
+
+{% endblock %}
+
+</body>
+</html>
