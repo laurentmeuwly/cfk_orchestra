@@ -29,7 +29,7 @@ cfk_contact:
     defaults: { _controller: AppBundle:Cfk:contact }
     
 thanks:
-    path:     /thanks
+    path:     /{_locale}/thanks
     defaults: { _controller: AppBundle:Cfk:thanks }
     
 fos_user:

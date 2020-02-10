@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Title;
+use AppBundle\Repository\TitleRepository;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,45 +19,35 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+
 class ContactType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
+		$lang = $options['locale'];
+		if($lang=='de') {
+			$optionTitles = ['Herr', 'Frau'];
+		} elseif($lang=='en') {
+			$optionTitles = ['Mister', 'Madam'];
+		} else {
+			$optionTitles = ['Monsieur', 'Madame'];
+		}
+
 		$builder
 		->add('title', EntityType::class, [
-		'class' => Title::class,
+			'translation_domain' => 'messages', 
+			'required' => true, 
+			'label' => 'form.label.title',
+			'label_attr' => [
+				'class' => 'col-sm-3 col-md-2 col-form-label',
+			] ,
+			'class' => Title::class,
+			'query_builder' => function (TitleRepository $er) use ($optionTitles) {
+				return $er->createQueryBuilder('t')
+					->where('t.title IN (:titles)')
+					->setParameters(array('titles' => $optionTitles));
+			}, 
 		])
-		/*->add('title', ChoiceType::class, [
-			'choices' => [
-				new Title('Monsieur'),
-				new Title('Madame'),
-				
-			],
-			'required' => true,
-			'expanded' => true,
-			'multiple' => false,
-			'label_attr' => [
-				'class' => 'col-sm-3 col-md-2 col-form-label',
-			],
-			'choice_label' => function(Title $title, $key, $value) {
-				return strtoupper($title->getName());
-			},
-			'choice_attr' => function(Title $title, $key, $value) {
-				return ['class' => 'title_'.strtolower($title->getName())];
-			},
-		])*/
-		/*->add('title', ChoiceType::class, [
-			'choices' => [
-				'form.label.mister' => '1',
-				'form.label.madam' => '2',
-			],
-			'required' => true,
-			'expanded' => true,
-			'multiple' => false,
-			'label_attr' => [
-				'class' => 'col-sm-3 col-md-2 col-form-label',
-			],
-		])*/
 		->add('firstname', TextType::class, [
 			'translation_domain' => 'messages', 
 			'required' => true, 
@@ -140,6 +131,12 @@ class ContactType extends AbstractType
 			'attr' => ['class' => 'big-button secondary'],
 		])
 		;
+	}
+
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setRequired('locale');
+		//$resolver->setAllowedTypes('user', array(User::class, 'int'));
 	}
 
 	public function setDefaultOptions(OptionsResolver $resolver)

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 //use ReCaptcha\ReCaptcha;
 use AppBundle\Entity\Contact;
+use AppBundle\Form\ContactType;
 
 class CfkController extends Controller
 {
@@ -31,13 +32,15 @@ class CfkController extends Controller
 
     public function contactAction(Request $request)
     {
+        $contact = new Contact();
+
         // Create the form according to the FormType created previously.
         // And give the proper parameters
-        $form = $this->createForm('AppBundle\Form\ContactType',null,array(
-            // To set the action use $this->generateUrl('route_identifier')
+        $form = $this->createForm(ContactType::class, $contact, array(
             'action' => $this->generateUrl('cfk_contact'),
-            'method' => 'POST'
-        ));
+            'method' => 'POST',
+            'locale' => $request->getLocale(),
+        ));          
 
         if ($request->isMethod('POST')) {
             // Refill the fields in case the form is not valid.
@@ -78,7 +81,7 @@ class CfkController extends Controller
                         $contact->setNewsletter($formData["newsletter"]==true ? 1 :0);
                         $contact->setMessage($formData["message"]);
                         $contact->setLanguage($request->getLocale());
-                        $contact->setTitle($formData["title"]);
+                        //$contact->setTitle($formData["title"]);
                         
                         /*if($contact->getNewsletter() && $contact->getEmail()!='') {
                             $sync = $this->container->get('mailchimp.sync');
@@ -92,7 +95,8 @@ class CfkController extends Controller
 	            	
 	                // Always send mail
 	                if($this->sendEmail($formData)){
-	                    // Everything OK, redirect to wherever you want ! :
+                        // Everything OK, redirect to wherever you want ! :
+                        //$route = $request->getLocale() . '/thanks';
 	                    return $this->redirectToRoute('thanks');
 	                }else{
 	                    // An error ocurred, handle
@@ -114,11 +118,11 @@ class CfkController extends Controller
     }
 
     private function sendEmail($data){
-        $myappContactMail = 'crm@intranet.kaeserberg.ch';
+        $myappContactMail = 'crm@crm.kaeserberg.ch';
         $myappContactPassword = 'oUrg!161';
 
-        $myappDestMail = 'info@kaeserberg.ch';
-        //$myappDestMail = 'laurent@lmeuwly.ch';
+        //$myappDestMail = 'info@kaeserberg.ch';
+        $myappDestMail = 'laurent@lmeuwly.ch';
         $myappCCMail = 'laurent@lmeuwly.ch';
         
         // In this case we'll use the Gmail mail services.

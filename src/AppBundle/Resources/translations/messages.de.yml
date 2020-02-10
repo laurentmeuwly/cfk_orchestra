@@ -1,6 +1,7 @@
 
 form:
   label:
+    title: Titel
     firstname: Vorname
     lastname: Name
     email: E-Mail
@@ -16,6 +17,7 @@ form:
       winbiz: Fichier issu de Winbiz
       std: Fichier manuel
     info: Source Outlook (p.ex Olivia)
+    mandatory_fields: Pflichtfelder
   field:
     firstname: Ihr Vorname
     lastname: Ihr Name
@@ -24,6 +26,10 @@ form:
     info: Indiquez une note pour cet import
 
 contactform: Kontaktform
+    
+thanks:
+  title: Danke!
+  message: Wir bedanken uns für Ihre Nachricht. Wir werden uns schnellstmöglich bei Ihnen melden.
     
 rgpd:
   consent: Voici le texte compatible avec le rgpb<br/>Comme il est long, il faut l'escapé afin de conserver les balise html.

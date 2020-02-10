@@ -1,14 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="http://new.kaeserberg.ch/Portals/_default/Skins/CFK2019/theme.css" type="text/css" rel="stylesheet"/>
 
+    <style>
+       label.required:after {
+           content: " *";
+       }
+    </style>
+</head>
+<body>
 
+{% block content%}
 
+{% trans_default_domain 'messages' %}
+<h2 class="text-center">{{ 'thanks.title'|trans }}</h2>
 
-{% block content_title %}
-{% spaceless %}
-   Merci !!
-{% endspaceless %}
+{{ 'thanks.message'|trans }}
 {% endblock %}
 
-{% block main %}
-Nous avons bien reçu votre demande de contact...
-
-{% endblock %}
+</body>
+</html>
