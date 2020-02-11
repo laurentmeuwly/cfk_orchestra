@@ -16,13 +16,40 @@ class CfkController extends Controller
         // Create the form according to the FormType created previously.
         // And give the proper parameters
         $form = $this->createForm('AppBundle\Form\SubscribeType',null,array(
-            'action' => $this->generateUrl('subscribe'),
+            'action' => $this->generateUrl('subscribe', [], UrlGeneratorInterface::ABSOLUTE_URL),
             'method' => 'POST'
         ));
 
         if ($request->isMethod('POST')) {
             // Refill the fields in case the form is not valid.
             $form->handleRequest($request);
+
+            if($form->isValid()){
+	            	
+                //Getting doctrine manager
+                $em = $this->container->get('doctrine')->getManager();
+                // Turning off doctrine default logs queries for saving memory
+                $em->getConnection()->getConfiguration()->setSQLLogger(null);
+                
+                $formData = $form->getData();
+
+                // if email already exists do not save the contact
+                $contactExists = $em->getRepository('AppBundle:Contact')->findByEmail($formData["email"]);
+                if(!$contactExists) {
+                    // save the contact
+                    $contact = new Contact();
+                    $contact->setEmail($formData["email"]);
+                    $contact->setFirstname($formData["firstname"]);
+                    $contact->setLastname($formData["lastname"]);
+                    $contact->setNewsletter(1);
+                    $contact->setLanguage($request->getLocale());
+
+                    $em->persist($contact);
+                    $em->flush();
+                    $em->clear();
+                }
+                return $this->redirectToRoute('thanks');
+            }
         }
 
         return $this->render('::subscribe.html.twig', array(
