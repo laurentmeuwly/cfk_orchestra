@@ -47,9 +47,24 @@ class CfkController extends Controller
                     $em->persist($contact);
                     $em->flush();
                     $em->clear();
+                } else {
+                    $error = [
+                        'success' => false,
+                        'error' => [
+                            'errors' => [
+                                'domain' => 'global',
+                                'reason' => 'conflict',
+                                'message' => 'Email already exists',
+                            ],
+                            'code' => 409,
+                            'message' => 'Email already exists',
+                        ],
+                    ];
+                    return $this->json($error, $status=409, $headers=[], $context=[]);
                 }
-                return $this->redirectToRoute('thanks');
+                return $this->json(['success' => true, 'error' => ''], $status=200, $headers=[], $context=[]);
             }
+            return $this->json(['success' => false, 'error' => 'Unknown error'], $status=400, $headers=[], $context=[]);
         }
 
         return $this->render('::subscribe.html.twig', array(
@@ -63,7 +78,8 @@ class CfkController extends Controller
 
         // Create the form according to the FormType created previously.
         // And give the proper parameters
-        $form = $this->createForm(ContactType::class, $contact, array(
+        //$form = $this->createForm(ContactType::class, $contact, array(
+        $form = $this->createForm('AppBundle\Form\ContactType',null, array(
             'action' => $this->generateUrl('cfk_contact', [], UrlGeneratorInterface::ABSOLUTE_URL),
             'method' => 'POST',
             'locale' => $request->getLocale(),
@@ -97,18 +113,19 @@ class CfkController extends Controller
 	            	$formData = $form->getData();
 
                     // if email already exists do not save the contact
-                    $contactExists = $em->getRepository('AppBundle:Contact')->findByEmail($formData["email"]);
+                    $contactExists = $em->getRepository('AppBundle:Contact')->findByEmail($formData['email']);
+            
                     if(!$contactExists) {
 
                         // save the contact
                         $contact = new Contact();
-                        $contact->setEmail($formData["email"]);
-                        $contact->setFirstname($formData["firstname"]);
-                        $contact->setLastname($formData["lastname"]);
-                        $contact->setNewsletter($formData["newsletter"]==true ? 1 :0);
-                        $contact->setMessage($formData["message"]);
+                        $contact->setEmail($formData['email']);
+                        $contact->setFirstname($formData['firstname']);
+                        $contact->setLastname($formData['lastname']);
+                        $contact->setNewsletter($formData['newsletter']==true ? 1 :0);
+                        $contact->setMessage($formData['message']);
                         $contact->setLanguage($request->getLocale());
-                        //$contact->setTitle($formData["title"]);
+                        $contact->setTitle($formData['title']);
                         
                         /*if($contact->getNewsletter() && $contact->getEmail()!='') {
                             $sync = $this->container->get('mailchimp.sync');
@@ -124,10 +141,21 @@ class CfkController extends Controller
 	                if($this->sendEmail($formData)){
                         // Everything OK, redirect to wherever you want ! :
                         //$route = $request->getLocale() . '/thanks';
-	                    return $this->redirectToRoute('thanks');
+	                    return $this->json(['success' => true, 'error' => ''], $status=200, $headers=[], $context=[]);
 	                }else{
-	                    // An error ocurred, handle
-	                    var_dump("Errooooor :(");
+	                    $error = [
+                            'success' => false,
+                            'error' => [
+                                'errors' => [
+                                    'domain' => 'global',
+                                    'reason' => 'conflict',
+                                    'message' => 'Could not send email',
+                                ],
+                                'code' => 409,
+                                'message' => 'Could not send email',
+                            ],
+                        ];
+                        return $this->json($error, $status=409, $headers=[], $context=[]);
 	                }
 	            }
 	            
@@ -148,8 +176,7 @@ class CfkController extends Controller
         $myappContactMail = 'crm@crm.kaeserberg.ch';
         $myappContactPassword = 'oUrg!161';
 
-        //$myappDestMail = 'info@kaeserberg.ch';
-        $myappDestMail = 'laurent@lmeuwly.ch';
+        $myappDestMail = 'info@kaeserberg.ch';
         $myappCCMail = 'laurent@lmeuwly.ch';
         
         // In this case we'll use the Gmail mail services.
@@ -167,16 +194,16 @@ class CfkController extends Controller
         
         $message = \Swift_Message::newInstance("Nouveau contact via site web")
         ->setFrom(array($myappContactMail => $myappContactMail))
-        ->setReplyTo($data["email"])
+        ->setReplyTo($data['email'])
         ->setTo(array($myappDestMail => $myappDestMail))
         ->setBcc(array($myappCCMail => $myappCCMail))
         ->setBody(
             "Voici les détails du Contact qui a été généré depuis votre site Internet:<br/><br/>" 
-            . "Prénom : " . $data["firstname"] . "<br/>"
-            . "Nom : " . $data["lastname"] . "<br/>"
-            . "Email : " . $data["email"] . "<br/>"
-            . "Newsletter : " . $data["newsletter"] . "<br/>"
-            . "<br/>Message :<br/>" . $data["message"]
+            . "Prénom : " . $data['firstname'] . "<br/>"
+            . "Nom : " . $data['lastname'] . "<br/>"
+            . "Email : " . $data['email'] . "<br/>"
+            . "Newsletter : " . $data['newsletter'] . "<br/>"
+            . "<br/>Message :<br/>" . $data['message']
             
             , 'text/html');
         
