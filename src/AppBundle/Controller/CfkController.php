@@ -11,13 +11,12 @@ use AppBundle\Form\ContactType;
 
 class CfkController extends Controller
 {
-    public function newsletterAction(Request $request)
+    public function subscribeAction(Request $request)
     {
         // Create the form according to the FormType created previously.
         // And give the proper parameters
-        $form = $this->createForm('AppBundle\Form\NewsletterType',null,array(
-            // To set the action use $this->generateUrl('route_identifier')
-            'action' => $this->generateUrl('cfk_newsletter'),
+        $form = $this->createForm('AppBundle\Form\SubscribeType',null,array(
+            'action' => $this->generateUrl('subscribe'),
             'method' => 'POST'
         ));
 
@@ -26,7 +25,7 @@ class CfkController extends Controller
             $form->handleRequest($request);
         }
 
-        return $this->render('::newsletter.html.twig', array(
+        return $this->render('::subscribe.html.twig', array(
             'form' => $form->createView()
         ));
     }

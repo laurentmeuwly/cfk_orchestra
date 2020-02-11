@@ -45,4 +45,5 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/[a-z]{2}/contact', role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/[a-z]{2}/thanks', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/[a-z]{2}/subscribe', role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: ROLE_USER }

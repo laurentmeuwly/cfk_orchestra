@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="http://new.kaeserberg.ch/Portals/_default/Skins/CFK2019/theme.css" type="text/css" rel="stylesheet"/>
+
+    <style>
+       label.required:after {
+           content: " *";
+       }
+    </style>
+</head>
+<body>
+
+{% block content%}
+
+{% trans_default_domain 'messages' %}
+<h2 class="text-center">{{ 'subscribeform'|trans }}</h2>
+
+{{ form_start(form) }}
+<div>
+
+    <div class="form-row align-items-center">
+    
+        <div class="col-auto">
+            {{ form_label(form.firstname) }}
+            {{ form_widget(form.firstname) }}
+        </div>
+    
+        <div class="col-auto">
+            {{ form_label(form.lastname) }}
+            {{ form_widget(form.lastname) }}
+        </div>
+    
+        <div class="col-auto">
+            {{ form_label(form.email) }}
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <div class="input-group-text">@</div>
+                </div>
+                {{ form_widget(form.email) }}
+            </div>
+        </div>
+    
+        <div class="col-auto">
+            {{ form_widget(form.save) }}
+        </div>
+    
+    </div>
+   
+    {# Render CSRF token etc .#}
+    <div style="">
+        {{ form_rest(form) }}
+    </div>
+ 
+</div>
+    {{ form_end(form) }}
+
+
+{% endblock %}
+
+</body>
+</html>

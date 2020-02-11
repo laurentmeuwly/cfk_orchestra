@@ -26,6 +26,7 @@ form:
     info: Indiquez une note pour cet import
 
 contactform: Kontaktform
+subscribeform: Newsletterform
     
 thanks:
   title: Danke!

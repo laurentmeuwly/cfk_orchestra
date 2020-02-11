@@ -31,6 +31,14 @@ cfk_contact:
 thanks:
     path:     /{_locale}/thanks
     defaults: { _controller: AppBundle:Cfk:thanks }
+
+subscribe:
+    path:     /{_locale}/subscribe
+    defaults: { _controller: AppBundle:Cfk:subscribe }
     
+confirm:
+    path:     /{_locale}/than/confirm
+    defaults: { _controller: AppBundle:Cfk:confirm }
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
